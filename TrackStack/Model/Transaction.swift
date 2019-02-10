@@ -9,21 +9,23 @@
 import Foundation
 
 class Transaction {
-    var currency: Currency
-    var amount: Double // how much user bought
-    var price: Double // what was the price of
-    var market: String?
-    var priceDiff: Double = 0    
+    let currency: Currency
+    let amount: Double // how much user bought
+    let priceOrigin: Double // what was the price of currency
+    var priceCurrent: Double
+    let market: String?
+    var priceDiff: Double = 0
     
-    init(currency: Currency, amount: Double, price: Double, market: String = "") {
+    init(currency: Currency, amount: Double, priceOrigin: Double, priceCurrent: Double, market: String = "") {
         self.currency = currency
         self.amount = amount
-        self.price = price
+        self.priceOrigin = priceOrigin
+        self.priceCurrent = priceCurrent
         self.market = market
     }
     
     enum Currency: String {
-        case Bitcoin
-        case Litecoin
+        case BTC
+        case LTC
     }
 }

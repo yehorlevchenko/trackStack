@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hNz-OE-LZQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BLF-8J-r8i">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,33 +9,85 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="7cj-xp-CyG">
+            <objects>
+                <navigationController id="BLF-8J-r8i" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9x0-hx-wvp">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="hNz-OE-LZQ" kind="relationship" relationship="rootViewController" id="vn5-hv-UTe"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="udS-oN-gOI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1348" y="144"/>
+        </scene>
         <!--Main View Controller-->
         <scene sceneID="p02-AB-EAC">
             <objects>
                 <tableViewController id="hNz-OE-LZQ" customClass="MainViewController" customModule="TrackStack" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="jQ0-aY-zIz">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="jQ0-aY-zIz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="separatorColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="fVd-dk-ban">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="80" id="fVd-dk-ban" customClass="TransactionCell" customModule="TrackStack">
+                                <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fVd-dk-ban" id="qoK-34-3eb">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Bitcoin" translatesAutoresizingMaskIntoConstraints="NO" id="JV5-MX-zk2">
+                                            <rect key="frame" x="20" y="20" width="39.5" height="39.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="JV5-MX-zk2" secondAttribute="height" multiplier="1:1" id="Jx1-uz-Ndm"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ta1-7H-Dhj">
+                                            <rect key="frame" x="70" y="20" width="211" height="40"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="priceUp" translatesAutoresizingMaskIntoConstraints="NO" id="DL5-PT-HjT">
+                                            <rect key="frame" x="289" y="25" width="30" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="KWJ-NL-oWK"/>
+                                                <constraint firstAttribute="width" constant="30" id="g10-R2-wzc"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="JV5-MX-zk2" secondAttribute="bottom" constant="20" id="1kg-or-ysu"/>
+                                        <constraint firstItem="DL5-PT-HjT" firstAttribute="centerY" secondItem="qoK-34-3eb" secondAttribute="centerY" id="TQ4-CN-tms"/>
+                                        <constraint firstItem="JV5-MX-zk2" firstAttribute="top" secondItem="qoK-34-3eb" secondAttribute="top" constant="20" id="ZY8-PO-SBM"/>
+                                        <constraint firstItem="JV5-MX-zk2" firstAttribute="leading" secondItem="qoK-34-3eb" secondAttribute="leading" constant="20" id="ixg-at-wyv"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="DL5-PT-HjT" secondAttribute="trailing" constant="40" id="jhJ-eL-yuV"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="transactionAmountLabel" destination="Ta1-7H-Dhj" id="SuQ-Ml-esJ"/>
+                                    <outlet property="transactionCurrencyImage" destination="JV5-MX-zk2" id="vkh-ld-F3e"/>
+                                    <outlet property="transactionPriceDiff" destination="DL5-PT-HjT" id="LW3-v9-bXi"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="hNz-OE-LZQ" id="Ncv-Zq-yMu"/>
-                            <outlet property="delegate" destination="hNz-OE-LZQ" id="tJ0-i9-tpi"/>
-                        </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="fQ2-Wv-Lkk"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="swJ-vB-W5y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-218" y="145"/>
+            <point key="canvasLocation" x="-607.20000000000005" y="142.57871064467767"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Bitcoin" width="24" height="24"/>
+        <image name="priceUp" width="15" height="15"/>
+    </resources>
 </document>

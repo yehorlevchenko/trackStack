@@ -7,5 +7,8 @@ target 'TrackStack' do
 
   # Pods for TrackStack
 pod 'SwipeCellKit'
+pod 'Alamofire'
+pod 'SwiftyJSON'
+pod 'RealmSwift'
 
 end
