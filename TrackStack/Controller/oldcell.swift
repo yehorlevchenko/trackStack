@@ -45,8 +45,8 @@ class oldcell: UITableViewCell {
     override func layoutSubviews() {
         if let currentTransaction = transaction {
             transactionView.text = "\(currentTransaction.amount) for \(currentTransaction.priceOrigin)"
-            print(String(Substring(currentTransaction.currency.rawValue)))
-            currencyImageView.image = UIImage(named: String(Substring(currentTransaction.currency.rawValue)))
+            print(String(Substring(currentTransaction.currency!)))
+            currencyImageView.image = UIImage(named: String(Substring(currentTransaction.currency!)))
         }
     }
     

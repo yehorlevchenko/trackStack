@@ -10,12 +10,15 @@ import UIKit
 import CoreData
 
 class MainViewController: SwipeTableViewController {
-    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var transactionData = [Transaction]()
     var api = APIWorker()
     var price: Double = 0
     
     override func viewDidLoad() {
+        
+        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 80
@@ -23,8 +26,36 @@ class MainViewController: SwipeTableViewController {
         api.getPrice(for: "BTC")
         
         loadTransactions()
+        
+        self.tableView.reloadData()
     }
     
+    // MARK: Create new transaction
+    @IBAction func addTransaction(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "addTransaction", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! AddTransactionViewController
+    }
+    
+    
+    
+    func saveTransactions () {
+        do {
+            try context.save()
+        } catch {
+                print("Error: unable to encode stack status,\(error)")
+        }
+    }
+    
+    func loadTransactions (with request: NSFetchRequest<Transaction> = Transaction.fetchRequest()) {
+        do {
+            transactionData = try context.fetch(request)
+        } catch {
+            print("Error: unable to load transactions, \(error)")
+        }
+    }
     
     // MARK: Swipe Table View delegate methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

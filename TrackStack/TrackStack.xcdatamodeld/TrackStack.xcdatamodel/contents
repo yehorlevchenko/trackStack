@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18A391" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Transaction" representedClassName=".Transaction" syncable="YES" codeGenerationType="class">
+    <entity name="Transaction" representedClassName=".Transaction" syncable="YES" codeGenerationType="category">
         <attribute name="amount" attributeType="Double" minValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="currency" attributeType="String" syncable="YES"/>
         <attribute name="market" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="price" attributeType="Double" minValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="priceCurrent" attributeType="Double" minValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="priceDiff" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="priceOrigin" optional="YES" attributeType="Double" minValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Transaction" positionX="-63" positionY="-18" width="128" height="150"/>
+        <element name="Transaction" positionX="-63" positionY="-18" width="128" height="135"/>
     </elements>
 </model>
