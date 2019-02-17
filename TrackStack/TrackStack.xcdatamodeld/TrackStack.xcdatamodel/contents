@@ -4,11 +4,10 @@
         <attribute name="amount" attributeType="Double" minValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="currency" attributeType="String" syncable="YES"/>
         <attribute name="market" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="priceCurrent" attributeType="Double" minValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="priceDiff" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="priceOrigin" optional="YES" attributeType="Double" minValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Transaction" positionX="-63" positionY="-18" width="128" height="135"/>
+        <element name="Transaction" positionX="-63" positionY="-18" width="128" height="120"/>
     </elements>
 </model>

@@ -15,7 +15,6 @@
 		A556276B2200F45D008F9947 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A556276A2200F45D008F9947 /* Assets.xcassets */; };
 		A556276E2200F45D008F9947 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A556276C2200F45D008F9947 /* LaunchScreen.storyboard */; };
 		A556277D220241B7008F9947 /* Transaction+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A556277C220241B7008F9947 /* Transaction+CoreDataClass.swift */; };
-		A556277F22024469008F9947 /* oldcell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A556277E22024469008F9947 /* oldcell.swift */; };
 		A56B7AB72213879400B696E6 /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B7AB62213879400B696E6 /* AddTransactionViewController.swift */; };
 		A5CB971A220849000015C438 /* SwipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CB9719220849000015C438 /* SwipeTableViewController.swift */; };
 		A5CB972022087C970015C438 /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CB971F22087C970015C438 /* TransactionCell.swift */; };
@@ -35,7 +34,6 @@
 		A556276D2200F45D008F9947 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A556276F2200F45D008F9947 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A556277C220241B7008F9947 /* Transaction+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transaction+CoreDataClass.swift"; sourceTree = "<group>"; };
-		A556277E22024469008F9947 /* oldcell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = oldcell.swift; sourceTree = "<group>"; };
 		A56B7AB62213879400B696E6 /* AddTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewController.swift; sourceTree = "<group>"; };
 		A5CB9719220849000015C438 /* SwipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTableViewController.swift; sourceTree = "<group>"; };
 		A5CB971F22087C970015C438 /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
@@ -115,7 +113,6 @@
 			isa = PBXGroup;
 			children = (
 				A55627622200F45B008F9947 /* MainViewController.swift */,
-				A556277E22024469008F9947 /* oldcell.swift */,
 				A5CB9719220849000015C438 /* SwipeTableViewController.swift */,
 				A5CB971F22087C970015C438 /* TransactionCell.swift */,
 				A5CB9721220E42FE0015C438 /* APIWorker.swift */,
@@ -235,8 +232,6 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-TrackStack/Pods-TrackStack-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
-				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
 			);
@@ -246,8 +241,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
 			);
@@ -270,7 +263,6 @@
 				A5CB971A220849000015C438 /* SwipeTableViewController.swift in Sources */,
 				A556277D220241B7008F9947 /* Transaction+CoreDataClass.swift in Sources */,
 				A56B7AB72213879400B696E6 /* AddTransactionViewController.swift in Sources */,
-				A556277F22024469008F9947 /* oldcell.swift in Sources */,
 				A55627612200F45B008F9947 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

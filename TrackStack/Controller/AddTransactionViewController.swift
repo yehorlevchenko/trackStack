@@ -7,24 +7,66 @@
 //
 
 import UIKit
+import CoreData
 
 class AddTransactionViewController: UIViewController {
 
+    @IBOutlet weak var amountField: UITextField!
+    @IBOutlet weak var currencyField: UITextField!
+    @IBOutlet weak var priceField: UITextField!
+    @IBOutlet weak var addTransactionButton: UIButton!
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let newTransaction = Transaction()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func addTransaction(_ sender: Any) {
+        newTransaction.priceDiff = newTransaction.getPriceDiff()
+        print("/// New transaction: \(newTransaction)")
+        do {
+            try context.save()
+        } catch {
+            print("error")
+        }
     }
-    */
+}
 
+extension AddTransactionViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        print("DID BEGIN EDITING")
+//        switch textField {
+//        case amountField:
+//        case currencyField:
+//        case priceField:
+//        default:
+//        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == amountField {
+            if let amount = Double(textField.text!) {
+                newTransaction.amount = amount
+                print("amountField: \(newTransaction)")
+            }
+        }
+        else if textField == currencyField {
+            newTransaction.currency = textField.text
+            print("currencyField: \(newTransaction)")
+        }
+        else if textField == priceField {
+            if let priceOrigin = Double(textField.text!) {
+                newTransaction.priceOrigin = priceOrigin
+                print("priceOrigin: \(newTransaction)")
+            }
+        }
+    }
+}
+
+extension AddTransactionViewController: UIPickerViewDelegate {
+    
 }

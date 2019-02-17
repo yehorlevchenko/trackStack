@@ -33,7 +33,7 @@ import CoreData
 
 public class Transaction: NSManagedObject {
     func getPriceDiff() -> Double {
-        let priceDiff = self.priceOrigin - self.priceCurrent - 100
+        let priceDiff = (self.priceOrigin - 3560) / 100
         return priceDiff
     }
     

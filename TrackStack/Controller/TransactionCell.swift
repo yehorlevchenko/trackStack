@@ -15,6 +15,7 @@ class TransactionCell: SwipeTableViewCell {
     var transaction: Transaction?
     let redColor = UIColor(hexString: "9F2121")
     let greenColor = UIColor(hexString: "219F4F")
+    var testPriceCurrent = 3563.00
     
     @IBOutlet weak var transactionAmountLabel: UILabel!
     @IBOutlet weak var transactionCurrencyImage: UIImageView!
@@ -24,15 +25,15 @@ class TransactionCell: SwipeTableViewCell {
     
     func setTransaction(data: Transaction) {
         let priceOrigin: String = String(format: "%.3f", data.priceOrigin)
-        let priceCurrent: String = String(format: "%.3f", data.priceCurrent)
+        let priceCurrent: String = String(format: "%.3f", testPriceCurrent)
         let priceDiff: String = String(format: "%.2f%", data.priceDiff)
         
         transactionAmountLabel.text = "\(data.amount) \(data.currency!)"
-        transactionDataLabel.text = "Buy: \(priceOrigin), Current: \(priceCurrent)"
+        transactionDataLabel.text = "Buy: \(priceOrigin), Current: \(testPriceCurrent)"
         transactionCurrencyImage.image = UIImage(named: data.currency!)
         transactionPriceDiffLabel.text = "\(priceDiff)%"
-        transactionPriceDiffLabel.textColor = data.priceOrigin > data.priceCurrent ? redColor : greenColor
-        transactionPriceDiff.image = data.priceOrigin > data.priceCurrent ? UIImage(named: "priceDown") : UIImage(named: "priceUp")
+        transactionPriceDiffLabel.textColor = data.priceOrigin > testPriceCurrent ? redColor : greenColor
+        transactionPriceDiff.image = data.priceOrigin > testPriceCurrent ? UIImage(named: "priceDown") : UIImage(named: "priceUp")
     }
     
 //    var transactionView: UITextView = {
