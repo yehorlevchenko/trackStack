@@ -45,8 +45,8 @@ class AddTransactionViewController: UIViewController {
         priceField.delegate = self
         currencyField.delegate = self
         amountField.delegate = self
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
     
@@ -63,15 +63,6 @@ class AddTransactionViewController: UIViewController {
         if self.view.frame.origin.y != 0 {
             self.view.frame.origin.y = 0
         }
-    }
-    
-    @IBAction func createTransaction(_ sender: Any) {
-        newTransaction = Transaction(context: context)
-        newTransaction!.amount = Double(amountField.text!)!
-        newTransaction!.currency = currencyField.text!
-        newTransaction!.priceOrigin = Double(priceField.text!)!
-    
-        delegate.addTransaction(newTransaction!)
     }
     
     func showCurrencyPicker() {
@@ -161,6 +152,23 @@ class AddTransactionViewController: UIViewController {
         
         validateForm()
     }
+    
+    @IBAction func createTransaction(_ sender: Any) {
+        newTransaction = Transaction(context: context)
+        newTransaction!.amount = Double(amountField.text!)!
+        newTransaction!.currency = currencyField.text!
+        newTransaction!.priceOrigin = Double(priceField.text!)!
+        
+        delegate.addTransaction(newTransaction!)
+        delegate.tableView.reloadData()
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func cancelTransaction(_ sender: Any) {
+        delegate.tableView.reloadData()
+        self.dismiss(animated: true, completion: nil)
+    }
 }
 
 extension AddTransactionViewController: UITextFieldDelegate {
@@ -174,6 +182,9 @@ extension AddTransactionViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        
+        textField.inputAccessoryView = createToolbar()
+        
         if textField == currencyField {
             showCurrencyPicker()
             return false
@@ -188,6 +199,20 @@ extension AddTransactionViewController: UITextFieldDelegate {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
+    func createToolbar() -> UIToolbar {
+        let bar = UIToolbar()
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(AddTransactionViewController.keyboardDonePressed))
+        bar.setItems([flexSpace, doneButton], animated: true)
+        bar.sizeToFit()
+        
+        return bar
+    }
+    
+    @objc func keyboardDonePressed() {
         view.endEditing(true)
     }
 }

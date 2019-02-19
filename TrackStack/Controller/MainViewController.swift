@@ -16,8 +16,8 @@ class MainViewController: SwipeTableViewController {
     var price: Double = 0
     
     override func viewDidLoad() {
-        
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 80
@@ -31,19 +31,12 @@ class MainViewController: SwipeTableViewController {
         self.tableView.reloadData()
     }
     
+    
     @IBAction func createTransaction(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "addTransaction", sender: self)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "addTransaction" {
-            let destinationVC = segue.destination as! AddTransactionViewController
-            destinationVC.api = api
-            destinationVC.delegate = self
-        }
-    }
-    
-    // MARK: Create new transaction from AddTransactionVC
+    // MARK: Handling new transactions
     func addTransaction(_ transaction: Transaction) {
         transactionData.append(transaction)
         
@@ -77,5 +70,14 @@ class MainViewController: SwipeTableViewController {
         cell.delegate = self
         cell.setTransaction(data: transaction)
         return cell
+    }
+    
+    // MARK: Segue handling
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addTransaction" {
+            let destinationVC = segue.destination as! AddTransactionViewController
+            destinationVC.api = api
+            destinationVC.delegate = self
+        }
     }
 }
