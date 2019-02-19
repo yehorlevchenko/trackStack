@@ -22,7 +22,7 @@ class APIWorker {
             if response.result.isSuccess {
                 let rawData: JSON = JSON(response.result.value!)
                 self.lastPrice[currency] = rawData["bid"].doubleValue
-                print(self.lastPrice)
+                print("/// BTC last prices: \(self.lastPrice)")
             }
             else {
                 fatalError("Unable to load data")

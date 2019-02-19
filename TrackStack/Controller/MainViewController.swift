@@ -18,7 +18,6 @@ class MainViewController: SwipeTableViewController {
     override func viewDidLoad() {
         
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
-        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 80
@@ -26,26 +25,36 @@ class MainViewController: SwipeTableViewController {
         api.getPrice(for: "BTC")
         
         loadTransactions()
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         self.tableView.reloadData()
     }
     
-    // MARK: Create new transaction
-    @IBAction func addTransaction(_ sender: UIBarButtonItem) {
+    @IBAction func createTransaction(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "addTransaction", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destinationVC = segue.destination as! AddTransactionViewController
+        if segue.identifier == "addTransaction" {
+            let destinationVC = segue.destination as! AddTransactionViewController
+            destinationVC.api = api
+            destinationVC.delegate = self
+        }
     }
     
-    
+    // MARK: Create new transaction from AddTransactionVC
+    func addTransaction(_ transaction: Transaction) {
+        transactionData.append(transaction)
+        
+        saveTransactions()
+    }
     
     func saveTransactions () {
         do {
             try context.save()
         } catch {
-                print("Error: unable to encode stack status,\(error)")
+                print("/// Error: unable to encode stack status,\(error)")
         }
     }
     
@@ -53,7 +62,7 @@ class MainViewController: SwipeTableViewController {
         do {
             transactionData = try context.fetch(request)
         } catch {
-            print("Error: unable to load transactions, \(error)")
+            print("/// Error: unable to load transactions, \(error)")
         }
     }
     

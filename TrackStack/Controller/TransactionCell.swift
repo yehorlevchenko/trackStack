@@ -25,8 +25,7 @@ class TransactionCell: SwipeTableViewCell {
     
     func setTransaction(data: Transaction) {
         let priceOrigin: String = String(format: "%.3f", data.priceOrigin)
-        let priceCurrent: String = String(format: "%.3f", testPriceCurrent)
-        let priceDiff: String = String(format: "%.2f%", data.priceDiff)
+        let priceDiff: String = String(format: "%.2f%", 100)
         
         transactionAmountLabel.text = "\(data.amount) \(data.currency!)"
         transactionDataLabel.text = "Buy: \(priceOrigin), Current: \(testPriceCurrent)"
@@ -34,49 +33,7 @@ class TransactionCell: SwipeTableViewCell {
         transactionPriceDiffLabel.text = "\(priceDiff)%"
         transactionPriceDiffLabel.textColor = data.priceOrigin > testPriceCurrent ? redColor : greenColor
         transactionPriceDiff.image = data.priceOrigin > testPriceCurrent ? UIImage(named: "priceDown") : UIImage(named: "priceUp")
-    }
-    
-//    var transactionView: UITextView = {
-//        var textView = UITextView()
-//        textView.translatesAutoresizingMaskIntoConstraints = false
-//        return textView
-//    }()
-//
-//    var currencyImageView: UIImageView = {
-//        var imageView = UIImageView()
-//        imageView.translatesAutoresizingMaskIntoConstraints = false
-//        return imageView
-//    }()
-//
-//    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-//        super.init(style: style, reuseIdentifier: reuseIdentifier)
-//
-//        self.addSubview(transactionView)
-//        self.addSubview(currencyImageView)
-//
-//        currencyImageView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-//        currencyImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-//        currencyImageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-//        currencyImageView.widthAnchor.constraint(equalTo: self.heightAnchor).isActive = true
-//
-//        transactionView.leftAnchor.constraint(equalTo: self.currencyImageView.rightAnchor).isActive = true
-//        transactionView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-//        transactionView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-//        transactionView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-//    }
-//
-//    override func layoutSubviews() {
-//
-//        transactionView.text = "еуые"
-//        //        print(String(Substring(currentTransaction.currency.rawValue)))
-//        currencyImageView.image = UIImage(named: "Bitcoin")
-//
-//    }
-//
-//    required init?(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-    
+    }    
 }
 
 
