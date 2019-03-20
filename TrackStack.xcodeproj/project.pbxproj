@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		14B8F395A154795A1302A9CD /* Pods_TrackStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66584C735AE7A4058F55025A /* Pods_TrackStack.framework */; };
+		A52F11DD2242606900FF517D /* Refresher.xib in Resources */ = {isa = PBXBuildFile; fileRef = A52F11DC2242606900FF517D /* Refresher.xib */; };
 		A55627612200F45B008F9947 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55627602200F45B008F9947 /* AppDelegate.swift */; };
 		A55627632200F45B008F9947 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55627622200F45B008F9947 /* MainViewController.swift */; };
 		A55627662200F45B008F9947 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A55627642200F45B008F9947 /* Main.storyboard */; };
@@ -15,15 +16,27 @@
 		A556276E2200F45D008F9947 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A556276C2200F45D008F9947 /* LaunchScreen.storyboard */; };
 		A56B7AB72213879400B696E6 /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B7AB62213879400B696E6 /* AddTransactionViewController.swift */; };
 		A58372BF221C38EA00E06B7C /* TrackStack.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A58372BD221C38EA00E06B7C /* TrackStack.xcdatamodeld */; };
+		A58372C7221D871600E06B7C /* TrackStackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58372C6221D871600E06B7C /* TrackStackTests.swift */; };
 		A5CB971A220849000015C438 /* SwipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CB9719220849000015C438 /* SwipeTableViewController.swift */; };
 		A5CB972022087C970015C438 /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CB971F22087C970015C438 /* TransactionCell.swift */; };
 		A5CB9722220E42FE0015C438 /* APIWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CB9721220E42FE0015C438 /* APIWorker.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		A58372C9221D871600E06B7C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A55627552200F45B008F9947 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A556275C2200F45B008F9947;
+			remoteInfo = TrackStack;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		5290C205DF380EEB1127E5C9 /* Pods-TrackStack.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrackStack.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TrackStack/Pods-TrackStack.debug.xcconfig"; sourceTree = "<group>"; };
 		66584C735AE7A4058F55025A /* Pods_TrackStack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrackStack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9418CCE9BECA8798AB9AC000 /* Pods-TrackStack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrackStack.release.xcconfig"; path = "Pods/Target Support Files/Pods-TrackStack/Pods-TrackStack.release.xcconfig"; sourceTree = "<group>"; };
+		A52F11DC2242606900FF517D /* Refresher.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Refresher.xib; sourceTree = "<group>"; };
 		A556275D2200F45B008F9947 /* TrackStack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrackStack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A55627602200F45B008F9947 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A55627622200F45B008F9947 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -33,6 +46,9 @@
 		A556276F2200F45D008F9947 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A56B7AB62213879400B696E6 /* AddTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewController.swift; sourceTree = "<group>"; };
 		A58372BE221C38EA00E06B7C /* TrackStack.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TrackStack.xcdatamodel; sourceTree = "<group>"; };
+		A58372C4221D871600E06B7C /* TrackStackTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrackStackTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A58372C6221D871600E06B7C /* TrackStackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackStackTests.swift; sourceTree = "<group>"; };
+		A58372C8221D871600E06B7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5CB9719220849000015C438 /* SwipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTableViewController.swift; sourceTree = "<group>"; };
 		A5CB971F22087C970015C438 /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
 		A5CB9721220E42FE0015C438 /* APIWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIWorker.swift; sourceTree = "<group>"; };
@@ -44,6 +60,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				14B8F395A154795A1302A9CD /* Pods_TrackStack.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A58372C1221D871600E06B7C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				A556275F2200F45B008F9947 /* TrackStack */,
+				A58372C5221D871600E06B7C /* TrackStackTests */,
 				A556275E2200F45B008F9947 /* Products */,
 				AB159C210B1C9E81AC8CD607 /* Pods */,
 				4657BDBDCF69A4F736DB5A8C /* Frameworks */,
@@ -72,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				A556275D2200F45B008F9947 /* TrackStack.app */,
+				A58372C4221D871600E06B7C /* TrackStackTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -102,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				A55627642200F45B008F9947 /* Main.storyboard */,
+				A52F11DC2242606900FF517D /* Refresher.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -116,6 +142,15 @@
 				A56B7AB62213879400B696E6 /* AddTransactionViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		A58372C5221D871600E06B7C /* TrackStackTests */ = {
+			isa = PBXGroup;
+			children = (
+				A58372C6221D871600E06B7C /* TrackStackTests.swift */,
+				A58372C8221D871600E06B7C /* Info.plist */,
+			);
+			path = TrackStackTests;
 			sourceTree = "<group>";
 		};
 		AB159C210B1C9E81AC8CD607 /* Pods */ = {
@@ -149,6 +184,24 @@
 			productReference = A556275D2200F45B008F9947 /* TrackStack.app */;
 			productType = "com.apple.product-type.application";
 		};
+		A58372C3221D871600E06B7C /* TrackStackTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A58372CB221D871600E06B7C /* Build configuration list for PBXNativeTarget "TrackStackTests" */;
+			buildPhases = (
+				A58372C0221D871600E06B7C /* Sources */,
+				A58372C1221D871600E06B7C /* Frameworks */,
+				A58372C2221D871600E06B7C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A58372CA221D871600E06B7C /* PBXTargetDependency */,
+			);
+			name = TrackStackTests;
+			productName = TrackStackTests;
+			productReference = A58372C4221D871600E06B7C /* TrackStackTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -162,10 +215,14 @@
 					A556275C2200F45B008F9947 = {
 						CreatedOnToolsVersion = 10.1;
 					};
+					A58372C3221D871600E06B7C = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = A556275C2200F45B008F9947;
+					};
 				};
 			};
 			buildConfigurationList = A55627582200F45B008F9947 /* Build configuration list for PBXProject "TrackStack" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -178,6 +235,7 @@
 			projectRoot = "";
 			targets = (
 				A556275C2200F45B008F9947 /* TrackStack */,
+				A58372C3221D871600E06B7C /* TrackStackTests */,
 			);
 		};
 /* End PBXProject section */
@@ -187,9 +245,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A52F11DD2242606900FF517D /* Refresher.xib in Resources */,
 				A556276E2200F45D008F9947 /* LaunchScreen.storyboard in Resources */,
 				A556276B2200F45D008F9947 /* Assets.xcassets in Resources */,
 				A55627662200F45B008F9947 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A58372C2221D871600E06B7C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,7 +329,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A58372C0221D871600E06B7C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A58372C7221D871600E06B7C /* TrackStackTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A58372CA221D871600E06B7C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A556275C2200F45B008F9947 /* TrackStack */;
+			targetProxy = A58372C9221D871600E06B7C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A55627642200F45B008F9947 /* Main.storyboard */ = {
@@ -406,6 +488,7 @@
 			baseConfigurationReference = 5290C205DF380EEB1127E5C9 /* Pods-TrackStack.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FNFZXL4ATZ;
 				INFOPLIST_FILE = TrackStack/Info.plist;
@@ -415,8 +498,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.leprechaunspot.TrackStack;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -425,6 +509,7 @@
 			baseConfigurationReference = 9418CCE9BECA8798AB9AC000 /* Pods-TrackStack.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FNFZXL4ATZ;
 				INFOPLIST_FILE = TrackStack/Info.plist;
@@ -434,8 +519,49 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.leprechaunspot.TrackStack;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		A58372CC221D871600E06B7C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FNFZXL4ATZ;
+				INFOPLIST_FILE = TrackStackTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.leprechaunspot.test.TrackStackTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TrackStack.app/TrackStack";
+			};
+			name = Debug;
+		};
+		A58372CD221D871600E06B7C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FNFZXL4ATZ;
+				INFOPLIST_FILE = TrackStackTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.leprechaunspot.test.TrackStackTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TrackStack.app/TrackStack";
 			};
 			name = Release;
 		};
@@ -449,7 +575,7 @@
 				A55627712200F45D008F9947 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		A55627722200F45D008F9947 /* Build configuration list for PBXNativeTarget "TrackStack" */ = {
 			isa = XCConfigurationList;
@@ -458,7 +584,16 @@
 				A55627742200F45D008F9947 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
+		};
+		A58372CB221D871600E06B7C /* Build configuration list for PBXNativeTarget "TrackStackTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A58372CC221D871600E06B7C /* Debug */,
+				A58372CD221D871600E06B7C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 

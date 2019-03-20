@@ -26,7 +26,7 @@
             </objects>
             <point key="canvasLocation" x="-1348" y="144"/>
         </scene>
-        <!--Main View Controller-->
+        <!--TrackStack-->
         <scene sceneID="p02-AB-EAC">
             <objects>
                 <tableViewController id="hNz-OE-LZQ" customClass="MainViewController" customModule="TrackStack" customModuleProvider="target" sceneMemberID="viewController">
@@ -35,15 +35,45 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="separatorColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="UjO-gp-YfE" userLabel="TopBar">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="7di-Mf-kdo">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BTC: no data" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y8F-nY-r7q" userLabel="BTCpriceLabel">
+                                            <rect key="frame" x="0.0" y="0.0" width="187.5" height="44"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.16078431369999999" green="0.50196078430000002" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LTC: no data" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xg1-US-ZCg" userLabel="LTCpriceLabel">
+                                            <rect key="frame" x="187.5" y="0.0" width="187.5" height="44"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.16078431369999999" green="0.50196078430000002" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="7di-Mf-kdo" firstAttribute="centerX" secondItem="UjO-gp-YfE" secondAttribute="centerX" id="62z-Q5-EC3"/>
+                                <constraint firstItem="7di-Mf-kdo" firstAttribute="centerY" secondItem="UjO-gp-YfE" secondAttribute="centerY" id="KPp-vb-h5N"/>
+                                <constraint firstItem="7di-Mf-kdo" firstAttribute="width" secondItem="UjO-gp-YfE" secondAttribute="width" id="hBR-o4-0Fj"/>
+                                <constraint firstItem="7di-Mf-kdo" firstAttribute="height" secondItem="UjO-gp-YfE" secondAttribute="height" id="m1L-yN-SDS"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="80" id="fVd-dk-ban" customClass="TransactionCell" customModule="TrackStack">
-                                <rect key="frame" x="0.0" y="28" width="375" height="80"/>
+                                <rect key="frame" x="0.0" y="72" width="375" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fVd-dk-ban" id="qoK-34-3eb">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Bitcoin" translatesAutoresizingMaskIntoConstraints="NO" id="JV5-MX-zk2">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BTC" translatesAutoresizingMaskIntoConstraints="NO" id="JV5-MX-zk2">
                                             <rect key="frame" x="20" y="20" width="39.5" height="39.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="JV5-MX-zk2" secondAttribute="height" multiplier="1:1" id="Jx1-uz-Ndm"/>
@@ -107,7 +137,7 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" id="fQ2-Wv-Lkk">
+                    <navigationItem key="navigationItem" title="TrackStack" largeTitleDisplayMode="always" id="fQ2-Wv-Lkk">
                         <barButtonItem key="rightBarButtonItem" title="Add" style="done" id="nvk-zd-ddp">
                             <connections>
                                 <action selector="createTransaction:" destination="hNz-OE-LZQ" id="uoG-ZZ-7GP"/>
@@ -115,23 +145,25 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="WDw-cs-DaL" kind="presentation" identifier="addTransaction" modalPresentationStyle="overCurrentContext" id="iLA-hW-Uga"/>
+                        <outlet property="BTCpriceLabel" destination="Y8F-nY-r7q" id="jAF-pS-9wm"/>
+                        <outlet property="LTCpriceLabel" destination="xg1-US-ZCg" id="dnb-RC-gse"/>
+                        <segue destination="WDw-cs-DaL" kind="showDetail" identifier="addTransaction" id="iLA-hW-Uga"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="swJ-vB-W5y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-607.20000000000005" y="142.57871064467767"/>
         </scene>
-        <!--New Transaction-->
+        <!--Add new transaction-->
         <scene sceneID="vAf-qY-5M8">
             <objects>
-                <viewController storyboardIdentifier="AddTransactionViewController" title="New Transaction" id="WDw-cs-DaL" customClass="AddTransactionViewController" customModule="TrackStack" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddTransactionViewController" title="Add new transaction" modalPresentationStyle="formSheet" id="WDw-cs-DaL" customClass="AddTransactionViewController" customModule="TrackStack" sceneMemberID="viewController">
                     <view key="view" contentMode="bottom" id="g3N-vo-ExR">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="wI7-ea-GeT">
-                                <rect key="frame" x="20" y="104" width="335" height="180"/>
+                                <rect key="frame" x="20" y="40" width="335" height="180"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SOs-fh-ihh" userLabel="PriceField">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="60"/>
@@ -151,6 +183,16 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
                                             </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VyQ-L1-6kJ">
+                                                <rect key="frame" x="268" y="10" width="57" height="40"/>
+                                                <color key="backgroundColor" red="0.16078431369999999" green="0.50196078430000002" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="Update">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="updatePrice:" destination="WDw-cs-DaL" eventType="touchUpInside" id="l0h-ef-i6F"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -160,7 +202,9 @@
                                             <constraint firstItem="Yf2-uv-7zr" firstAttribute="leading" secondItem="kJ6-o4-nyK" secondAttribute="trailing" constant="20" id="IYN-3a-UnS"/>
                                             <constraint firstItem="ISr-oZ-Gm7" firstAttribute="trailing" secondItem="Yf2-uv-7zr" secondAttribute="trailing" constant="10" id="Ix5-tW-mmJ"/>
                                             <constraint firstItem="kJ6-o4-nyK" firstAttribute="top" secondItem="ISr-oZ-Gm7" secondAttribute="top" constant="10" id="NUD-cr-9d8"/>
+                                            <constraint firstItem="VyQ-L1-6kJ" firstAttribute="centerY" secondItem="Yf2-uv-7zr" secondAttribute="centerY" id="QLU-YI-dna"/>
                                             <constraint firstItem="ISr-oZ-Gm7" firstAttribute="bottom" secondItem="Yf2-uv-7zr" secondAttribute="bottom" constant="10" id="abz-RR-1Xi"/>
+                                            <constraint firstItem="VyQ-L1-6kJ" firstAttribute="leading" secondItem="Yf2-uv-7zr" secondAttribute="trailing" constant="-57" id="ezD-1S-6bY"/>
                                             <constraint firstItem="Yf2-uv-7zr" firstAttribute="top" secondItem="ISr-oZ-Gm7" secondAttribute="top" constant="10" id="m5w-nK-LMO"/>
                                         </constraints>
                                         <viewLayoutGuide key="safeArea" id="ISr-oZ-Gm7"/>
@@ -235,12 +279,12 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5d8-Tn-N7y">
-                                <rect key="frame" x="20" y="507" width="335" height="50"/>
+                                <rect key="frame" x="20" y="443" width="335" height="50"/>
                                 <color key="backgroundColor" red="0.16078431369999999" green="0.50196078430000002" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Yb6-bJ-3tR"/>
                                 </constraints>
-                                <state key="normal" title="Button">
+                                <state key="normal" title="Add Transaction">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -248,18 +292,16 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KUm-ET-2Qc" userLabel="Cancel Transaction Button">
-                                <rect key="frame" x="20" y="577" width="335" height="50"/>
+                                <rect key="frame" x="20" y="513" width="335" height="50"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="K1d-iH-dBU"/>
                                 </constraints>
-                                <state key="normal" title="Button">
+                                <state key="normal" title="Cancel">
                                     <color key="titleColor" red="0.60784313729999995" green="0.10980392160000001" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="cancelCreation:" destination="WDw-cs-DaL" eventType="touchUpInside" id="Ppy-Va-MSq"/>
                                     <action selector="cancelTransaction:" destination="WDw-cs-DaL" eventType="touchUpInside" id="tOQ-Z0-8uk"/>
-                                    <action selector="createTransaction:" destination="WDw-cs-DaL" eventType="touchUpInside" id="0DX-S7-652"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -277,12 +319,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="87q-Mw-HEe"/>
                     </view>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="addTransactionButton" destination="5d8-Tn-N7y" id="MlH-Ox-DuZ"/>
                         <outlet property="amountField" destination="BAY-xi-L6G" id="PqO-XO-KLr"/>
                         <outlet property="currencyField" destination="QEl-KA-iQR" id="Ymj-Q8-dFt"/>
                         <outlet property="priceField" destination="Yf2-uv-7zr" id="ndd-vP-Ca7"/>
+                        <outlet property="priceUpdateButton" destination="VyQ-L1-6kJ" id="cGq-b9-pzL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NyL-gg-IfM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -291,7 +334,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Bitcoin" width="24" height="24"/>
+        <image name="BTC" width="24" height="24"/>
         <image name="priceUp" width="25" height="25"/>
     </resources>
 </document>

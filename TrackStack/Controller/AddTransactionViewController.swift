@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-enum ValidationError {
+enum ValidationError: Error {
     case emptyField
     case notDouble
     case notPicked
@@ -31,12 +31,13 @@ class AddTransactionViewController: UIViewController {
     @IBOutlet weak var amountField: UITextField!
     @IBOutlet weak var addTransactionButton: UIButton!
     @IBOutlet weak var currencyPicker: UIPickerView!
+    @IBOutlet weak var priceUpdateButton: UIButton!
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     weak var delegate: MainViewController!
     var newTransaction: Transaction?
     var inputData: ValidData = ValidData()
-    var api: APIWorker?
+    var currencyPicked: String = "BTC"
     let currencyList: [String] = ["BTC", "LTC"]
     
     override func viewDidLoad() {
@@ -45,6 +46,9 @@ class AddTransactionViewController: UIViewController {
         priceField.delegate = self
         currencyField.delegate = self
         amountField.delegate = self
+        
+        priceUpdateButton.layer.cornerRadius = 10
+        // View movement on keyboard appears is disabled
 //        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
 //        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
@@ -74,12 +78,14 @@ class AddTransactionViewController: UIViewController {
         
         let currencyBTC: UIAlertAction = UIAlertAction(title: "BTC", style: .default) { action -> Void in
             self.currencyField.text = "BTC"
+            self.currencyPicked = "BTC"
             self.validateField(self.currencyField)
         }
         myAlertController.addAction(currencyBTC)
         
         let currencyLTC: UIAlertAction = UIAlertAction(title: "LTC", style: .default) { action -> Void in
             self.currencyField.text = "LTC"
+            self.currencyPicked = "LTC"
             self.validateField(self.currencyField)
         }
         myAlertController.addAction(currencyLTC)
@@ -89,29 +95,31 @@ class AddTransactionViewController: UIViewController {
         self.present(myAlertController, animated: true, completion: nil)
     }
     
+    
+    // MARK: User Input validation
     func validateField(_ textField: UITextField) {
         if let data = textField.text {
             // Fields with Double values
             if textField == amountField || textField == priceField {
                 if let value = Double(data) {
-                    fieldValid(field: textField)
+                    fieldIsValid(field: textField)
                 }
                 else {
-                    fieldInvalid(field: textField, reason: .notDouble)
+                    fieldIsInvalid(field: textField, reason: .notDouble)
                 }
             }
             // Fields with picked values
             else if textField == currencyField {
                 if currencyList.contains(data) {
-                    fieldValid(field: textField)
+                    fieldIsValid(field: textField)
                 }
                 else {
-                    fieldInvalid(field: textField, reason: .notPicked)
+                    fieldIsInvalid(field: textField, reason: .notPicked)
                 }
             }
         }
         else {
-            fieldInvalid(field: textField, reason: .emptyField)
+            fieldIsInvalid(field: textField, reason: .emptyField)
         }
     }
     
@@ -124,7 +132,7 @@ class AddTransactionViewController: UIViewController {
         }
     }
     
-    func fieldInvalid(field: UITextField, reason: ValidationError) {
+    func fieldIsInvalid(field: UITextField, reason: ValidationError) {
         field.backgroundColor = UIColor.flatWatermelonColorDark()
         switch reason {
         case .emptyField:
@@ -136,7 +144,7 @@ class AddTransactionViewController: UIViewController {
         }
     }
     
-    func fieldValid(field: UITextField) {
+    func fieldIsValid(field: UITextField) {
         field.backgroundColor = UIColor.flatGreenColorDark()
         
         switch field {
@@ -153,11 +161,24 @@ class AddTransactionViewController: UIViewController {
         validateForm()
     }
     
+    @IBAction func updatePrice(_ sender: UIButton) {
+        if let priceHint = delegate.priceData[currencyPicked] {
+            priceField.text = String(priceHint)
+            validateField(priceField)
+        }
+    }
+    
     @IBAction func createTransaction(_ sender: Any) {
+        let amount: Double = Double(amountField.text!)!
+        let currency: String = currencyField.text!
+        let priceOrigin: Double = Double(priceField.text!)!
+        let priceDiff: Double = delegate.priceData[currency]! / priceOrigin * 100
+        
         newTransaction = Transaction(context: context)
-        newTransaction!.amount = Double(amountField.text!)!
-        newTransaction!.currency = currencyField.text!
-        newTransaction!.priceOrigin = Double(priceField.text!)!
+        newTransaction!.amount = amount
+        newTransaction!.currency = currency
+        newTransaction!.priceOrigin = priceOrigin
+        newTransaction!.priceDiff = priceDiff
         
         delegate.addTransaction(newTransaction!)
         delegate.tableView.reloadData()

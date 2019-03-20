@@ -12,27 +12,36 @@ import SwiftyJSON
 
 class APIWorker {
 
-    let baseUrl: String = "https://apiv2.bitcoinaverage.com/indices/global/ticker/"
-    var lastPrice: [String:Double] = [:]
+    let baseUrl: String = "https://apiv2.bitcoinaverage.com/indices/global/ticker/all?crypto=BTC&fiat=USD,EUR"
+    var lastCurrencyData: [String:Any]?
+    
+    func checkConnection() -> Bool {
+        return NetworkReachabilityManager()!.isReachable
+    }
     
     func getPrice(for currency: String) {
-        let requestUrl: String = "\(baseUrl)\(currency)USD"
+        let requestUrl: String = "\(baseUrl)"
+        var rawData: JSON?
         
-        Alamofire.request(requestUrl, method: .get).responseJSON { response in
+        Alamofire.request(requestUrl, method: .get).validate().responseJSON { response in
+            print("Getting data")
             if response.result.isSuccess {
-                let rawData: JSON = JSON(response.result.value!)
-                self.lastPrice[currency] = rawData["bid"].doubleValue
-                print("/// BTC last prices: \(self.lastPrice)")
+                print("Data received")
+                if let data = response.result.value {
+                    rawData = JSON(data)
+                    print("Last Price updated")
+                    self.unpackData(for: currency, from: rawData!)
+                }
             }
-            else {
-                fatalError("Unable to load data")
-            }
-            
-//            if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
-//                print("Data: \(utf8Text)") // original server data as UTF8 string
-//            }
-            
-            
         }
+    }
+    
+    func unpackData(for currency: String, from data: JSON) {
+        var newCurrencyData: [String:Any] = [:]
+        newCurrencyData["ticker"] = currency
+        newCurrencyData["price"] = data["bid"].doubleValue
+        newCurrencyData["date"] = data["display_timestamp"].stringValue
+        
+        lastCurrencyData = newCurrencyData
     }
 }
