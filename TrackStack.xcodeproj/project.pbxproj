@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		14B8F395A154795A1302A9CD /* Pods_TrackStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66584C735AE7A4058F55025A /* Pods_TrackStack.framework */; };
+		A526ECD422529C58003FAF1B /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A526ECD322529C58003FAF1B /* MainVC.swift */; };
 		A52F11DD2242606900FF517D /* Refresher.xib in Resources */ = {isa = PBXBuildFile; fileRef = A52F11DC2242606900FF517D /* Refresher.xib */; };
 		A55627612200F45B008F9947 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55627602200F45B008F9947 /* AppDelegate.swift */; };
 		A55627632200F45B008F9947 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55627622200F45B008F9947 /* MainViewController.swift */; };
@@ -36,6 +37,7 @@
 		5290C205DF380EEB1127E5C9 /* Pods-TrackStack.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrackStack.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TrackStack/Pods-TrackStack.debug.xcconfig"; sourceTree = "<group>"; };
 		66584C735AE7A4058F55025A /* Pods_TrackStack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrackStack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9418CCE9BECA8798AB9AC000 /* Pods-TrackStack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrackStack.release.xcconfig"; path = "Pods/Target Support Files/Pods-TrackStack/Pods-TrackStack.release.xcconfig"; sourceTree = "<group>"; };
+		A526ECD322529C58003FAF1B /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		A52F11DC2242606900FF517D /* Refresher.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Refresher.xib; sourceTree = "<group>"; };
 		A556275D2200F45B008F9947 /* TrackStack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrackStack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A55627602200F45B008F9947 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				A5CB971F22087C970015C438 /* TransactionCell.swift */,
 				A5CB9721220E42FE0015C438 /* APIWorker.swift */,
 				A56B7AB62213879400B696E6 /* AddTransactionViewController.swift */,
+				A526ECD322529C58003FAF1B /* MainVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 				A5CB972022087C970015C438 /* TransactionCell.swift in Sources */,
 				A5CB9722220E42FE0015C438 /* APIWorker.swift in Sources */,
 				A55627632200F45B008F9947 /* MainViewController.swift in Sources */,
+				A526ECD422529C58003FAF1B /* MainVC.swift in Sources */,
 				A5CB971A220849000015C438 /* SwipeTableViewController.swift in Sources */,
 				A56B7AB72213879400B696E6 /* AddTransactionViewController.swift in Sources */,
 				A55627612200F45B008F9947 /* AppDelegate.swift in Sources */,

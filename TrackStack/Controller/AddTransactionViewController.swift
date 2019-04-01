@@ -31,10 +31,9 @@ class AddTransactionViewController: UIViewController {
     @IBOutlet weak var amountField: UITextField!
     @IBOutlet weak var addTransactionButton: UIButton!
     @IBOutlet weak var currencyPicker: UIPickerView!
-    @IBOutlet weak var priceUpdateButton: UIButton!
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    weak var delegate: MainViewController!
+    weak var delegate: MainVC!
     var newTransaction: Transaction?
     var inputData: ValidData = ValidData()
     var currencyPicked: String = "BTC"
@@ -47,13 +46,11 @@ class AddTransactionViewController: UIViewController {
         currencyField.delegate = self
         amountField.delegate = self
         
-        priceUpdateButton.layer.cornerRadius = 10
         // View movement on keyboard appears is disabled
 //        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
 //        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
-    
     // MARK: Keyboard handler
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
@@ -80,6 +77,10 @@ class AddTransactionViewController: UIViewController {
             self.currencyField.text = "BTC"
             self.currencyPicked = "BTC"
             self.validateField(self.currencyField)
+            if let priceHint = self.delegate.priceData[self.currencyPicked] {
+                self.priceField.text = String(priceHint)
+                self.validateField(self.priceField)
+            }
         }
         myAlertController.addAction(currencyBTC)
         
@@ -87,6 +88,10 @@ class AddTransactionViewController: UIViewController {
             self.currencyField.text = "LTC"
             self.currencyPicked = "LTC"
             self.validateField(self.currencyField)
+            if let priceHint = self.delegate.priceData[self.currencyPicked] {
+                self.priceField.text = String(priceHint)
+                self.validateField(self.priceField)
+            }
         }
         myAlertController.addAction(currencyLTC)
 
@@ -161,13 +166,6 @@ class AddTransactionViewController: UIViewController {
         validateForm()
     }
     
-    @IBAction func updatePrice(_ sender: UIButton) {
-        if let priceHint = delegate.priceData[currencyPicked] {
-            priceField.text = String(priceHint)
-            validateField(priceField)
-        }
-    }
-    
     @IBAction func createTransaction(_ sender: Any) {
         let amount: Double = Double(amountField.text!)!
         let currency: String = currencyField.text!
@@ -181,13 +179,12 @@ class AddTransactionViewController: UIViewController {
         newTransaction!.priceDiff = priceDiff
         
         delegate.addTransaction(newTransaction!)
-        delegate.tableView.reloadData()
+        delegate.TransactionTable.reloadData()
         
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func cancelTransaction(_ sender: Any) {
-        delegate.tableView.reloadData()
         self.dismiss(animated: true, completion: nil)
     }
 }
