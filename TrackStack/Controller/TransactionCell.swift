@@ -33,6 +33,10 @@ class TransactionCell: SwipeTableViewCell {
         transactionPriceDiffLabel.textColor = transaction.priceOrigin > currentPrice ? redColor : greenColor
         transactionPriceDiff.image = transaction.priceOrigin > currentPrice ? UIImage(named: "priceDown") : UIImage(named: "priceUp")
     }
+    
+    func updateData() {
+        print("Cell is updated")
+    }
 }
 
 

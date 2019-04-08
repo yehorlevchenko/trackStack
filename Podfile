@@ -10,5 +10,6 @@ target 'TrackStack' do
     pod 'Alamofire'
     pod 'ChameleonFramework'
     pod 'SwipeCellKit'
+    pod 'lottie-ios'
 
 end

@@ -13,11 +13,15 @@
 		A55627612200F45B008F9947 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55627602200F45B008F9947 /* AppDelegate.swift */; };
 		A55627632200F45B008F9947 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55627622200F45B008F9947 /* MainViewController.swift */; };
 		A55627662200F45B008F9947 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A55627642200F45B008F9947 /* Main.storyboard */; };
-		A556276B2200F45D008F9947 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A556276A2200F45D008F9947 /* Assets.xcassets */; };
 		A556276E2200F45D008F9947 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A556276C2200F45D008F9947 /* LaunchScreen.storyboard */; };
 		A56B7AB72213879400B696E6 /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B7AB62213879400B696E6 /* AddTransactionViewController.swift */; };
 		A58372BF221C38EA00E06B7C /* TrackStack.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A58372BD221C38EA00E06B7C /* TrackStack.xcdatamodeld */; };
 		A58372C7221D871600E06B7C /* TrackStackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58372C6221D871600E06B7C /* TrackStackTests.swift */; };
+		A5AFC11C225B6311000615C8 /* coin_loader.json in Resources */ = {isa = PBXBuildFile; fileRef = A5AFC11B225B6311000615C8 /* coin_loader.json */; };
+		A5AFC11E225B6370000615C8 /* IntroVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AFC11D225B6370000615C8 /* IntroVC.swift */; };
+		A5AFC124225BCA00000615C8 /* SafetyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AFC123225BCA00000615C8 /* SafetyVC.swift */; };
+		A5AFC126225BCAF7000615C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5AFC125225BCAF6000615C8 /* Assets.xcassets */; };
+		A5AFC128225BCC1A000615C8 /* MainGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AFC127225BCC1A000615C8 /* MainGradient.swift */; };
 		A5CB971A220849000015C438 /* SwipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CB9719220849000015C438 /* SwipeTableViewController.swift */; };
 		A5CB972022087C970015C438 /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CB971F22087C970015C438 /* TransactionCell.swift */; };
 		A5CB9722220E42FE0015C438 /* APIWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CB9721220E42FE0015C438 /* APIWorker.swift */; };
@@ -43,7 +47,6 @@
 		A55627602200F45B008F9947 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A55627622200F45B008F9947 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		A55627652200F45B008F9947 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		A556276A2200F45D008F9947 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A556276D2200F45D008F9947 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A556276F2200F45D008F9947 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A56B7AB62213879400B696E6 /* AddTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewController.swift; sourceTree = "<group>"; };
@@ -51,6 +54,11 @@
 		A58372C4221D871600E06B7C /* TrackStackTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrackStackTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A58372C6221D871600E06B7C /* TrackStackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackStackTests.swift; sourceTree = "<group>"; };
 		A58372C8221D871600E06B7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5AFC11B225B6311000615C8 /* coin_loader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = coin_loader.json; sourceTree = "<group>"; };
+		A5AFC11D225B6370000615C8 /* IntroVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroVC.swift; sourceTree = "<group>"; };
+		A5AFC123225BCA00000615C8 /* SafetyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafetyVC.swift; sourceTree = "<group>"; };
+		A5AFC125225BCAF6000615C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A5AFC127225BCC1A000615C8 /* MainGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGradient.swift; sourceTree = "<group>"; };
 		A5CB9719220849000015C438 /* SwipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTableViewController.swift; sourceTree = "<group>"; };
 		A5CB971F22087C970015C438 /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
 		A5CB9721220E42FE0015C438 /* APIWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIWorker.swift; sourceTree = "<group>"; };
@@ -106,11 +114,11 @@
 		A556275F2200F45B008F9947 /* TrackStack */ = {
 			isa = PBXGroup;
 			children = (
+				A5AFC125225BCAF6000615C8 /* Assets.xcassets */,
 				A55627772200F7BE008F9947 /* Controller */,
 				A55627762200F7B9008F9947 /* View */,
 				A55627752200F7AE008F9947 /* Model */,
 				A55627602200F45B008F9947 /* AppDelegate.swift */,
-				A556276A2200F45D008F9947 /* Assets.xcassets */,
 				A556276C2200F45D008F9947 /* LaunchScreen.storyboard */,
 				A556276F2200F45D008F9947 /* Info.plist */,
 				A58372BD221C38EA00E06B7C /* TrackStack.xcdatamodeld */,
@@ -128,6 +136,7 @@
 		A55627762200F7B9008F9947 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A5AFC11B225B6311000615C8 /* coin_loader.json */,
 				A55627642200F45B008F9947 /* Main.storyboard */,
 				A52F11DC2242606900FF517D /* Refresher.xib */,
 			);
@@ -139,10 +148,13 @@
 			children = (
 				A55627622200F45B008F9947 /* MainViewController.swift */,
 				A5CB9719220849000015C438 /* SwipeTableViewController.swift */,
-				A5CB971F22087C970015C438 /* TransactionCell.swift */,
 				A5CB9721220E42FE0015C438 /* APIWorker.swift */,
 				A56B7AB62213879400B696E6 /* AddTransactionViewController.swift */,
+				A5AFC11D225B6370000615C8 /* IntroVC.swift */,
 				A526ECD322529C58003FAF1B /* MainVC.swift */,
+				A5AFC123225BCA00000615C8 /* SafetyVC.swift */,
+				A5AFC127225BCC1A000615C8 /* MainGradient.swift */,
+				A5CB971F22087C970015C438 /* TransactionCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -248,10 +260,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5AFC11C225B6311000615C8 /* coin_loader.json in Resources */,
 				A52F11DD2242606900FF517D /* Refresher.xib in Resources */,
 				A556276E2200F45D008F9947 /* LaunchScreen.storyboard in Resources */,
-				A556276B2200F45D008F9947 /* Assets.xcassets in Resources */,
 				A55627662200F45B008F9947 /* Main.storyboard in Resources */,
+				A5AFC126225BCAF7000615C8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,6 +313,7 @@
 				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
+				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -309,6 +323,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -326,10 +341,13 @@
 				A5CB972022087C970015C438 /* TransactionCell.swift in Sources */,
 				A5CB9722220E42FE0015C438 /* APIWorker.swift in Sources */,
 				A55627632200F45B008F9947 /* MainViewController.swift in Sources */,
+				A5AFC124225BCA00000615C8 /* SafetyVC.swift in Sources */,
+				A5AFC128225BCC1A000615C8 /* MainGradient.swift in Sources */,
 				A526ECD422529C58003FAF1B /* MainVC.swift in Sources */,
 				A5CB971A220849000015C438 /* SwipeTableViewController.swift in Sources */,
 				A56B7AB72213879400B696E6 /* AddTransactionViewController.swift in Sources */,
 				A55627612200F45B008F9947 /* AppDelegate.swift in Sources */,
+				A5AFC11E225B6370000615C8 /* IntroVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
