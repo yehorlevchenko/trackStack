@@ -15,6 +15,17 @@ class TransactionCell: SwipeTableViewCell {
     var transaction: Transaction?
     let redColor = UIColor(hexString: "9F2121")
     let greenColor = UIColor(hexString: "219F4F")
+    let animator = UIViewPropertyAnimator(
+        duration: 0.3,
+        curve: .easeInOut) {
+            
+    }
+    // Cell index for animation delay, starting from 1
+    var index: Int = 0 {
+        didSet {
+            self.index += 1
+        }
+    }
     
     @IBOutlet weak var transactionAmountLabel: UILabel!
     @IBOutlet weak var transactionCurrencyImage: UIImageView!
@@ -35,9 +46,24 @@ class TransactionCell: SwipeTableViewCell {
     }
     
     func updateData() {
-        print("Cell is updated")
+        print("Update")
+        currencyImageJump()
+        diffLabelSwitch()
+    }
+    
+    func currencyImageJump() {
+        let jumpDelay = TimeInterval(Double(self.index) * 0.3)
+        let jump = UIViewPropertyAnimator(duration: 0.6, curve: .easeInOut) {
+            self.transactionCurrencyImage.center.y += 8
+        }
+        jump.startAnimation(afterDelay: jumpDelay)
+    }
+    
+    func diffLabelSwitch() {
+        let turn = UIViewPropertyAnimator(duration: 0.6, curve: .easeInOut) {
+            self.transactionPriceDiff.transform = self.transactionPriceDiff.transform.rotated(by: .pi/1)
+        }
+        
+        turn.startAnimation()
     }
 }
-
-
-
