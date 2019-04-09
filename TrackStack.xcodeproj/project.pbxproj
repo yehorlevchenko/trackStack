@@ -22,6 +22,10 @@
 		A5AFC124225BCA00000615C8 /* SafetyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AFC123225BCA00000615C8 /* SafetyVC.swift */; };
 		A5AFC126225BCAF7000615C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5AFC125225BCAF6000615C8 /* Assets.xcassets */; };
 		A5AFC128225BCC1A000615C8 /* MainGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AFC127225BCC1A000615C8 /* MainGradient.swift */; };
+		A5AFC12A225CA442000615C8 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AFC129225CA442000615C8 /* Coordinator.swift */; };
+		A5AFC12C225CA5BC000615C8 /* Storyboarded.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AFC12B225CA5BC000615C8 /* Storyboarded.swift */; };
+		A5AFC12E225CA68A000615C8 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AFC12D225CA68A000615C8 /* MainCoordinator.swift */; };
+		A5AFC133225CBA44000615C8 /* Bitcoinaverage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AFC132225CBA44000615C8 /* Bitcoinaverage.swift */; };
 		A5CB971A220849000015C438 /* SwipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CB9719220849000015C438 /* SwipeTableViewController.swift */; };
 		A5CB972022087C970015C438 /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CB971F22087C970015C438 /* TransactionCell.swift */; };
 		A5CB9722220E42FE0015C438 /* APIWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CB9721220E42FE0015C438 /* APIWorker.swift */; };
@@ -59,6 +63,10 @@
 		A5AFC123225BCA00000615C8 /* SafetyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafetyVC.swift; sourceTree = "<group>"; };
 		A5AFC125225BCAF6000615C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A5AFC127225BCC1A000615C8 /* MainGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGradient.swift; sourceTree = "<group>"; };
+		A5AFC129225CA442000615C8 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		A5AFC12B225CA5BC000615C8 /* Storyboarded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboarded.swift; sourceTree = "<group>"; };
+		A5AFC12D225CA68A000615C8 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		A5AFC132225CBA44000615C8 /* Bitcoinaverage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bitcoinaverage.swift; sourceTree = "<group>"; };
 		A5CB9719220849000015C438 /* SwipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTableViewController.swift; sourceTree = "<group>"; };
 		A5CB971F22087C970015C438 /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
 		A5CB9721220E42FE0015C438 /* APIWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIWorker.swift; sourceTree = "<group>"; };
@@ -114,14 +122,15 @@
 		A556275F2200F45B008F9947 /* TrackStack */ = {
 			isa = PBXGroup;
 			children = (
+				A5AFC131225CB47B000615C8 /* Coordinator */,
 				A5AFC125225BCAF6000615C8 /* Assets.xcassets */,
 				A55627772200F7BE008F9947 /* Controller */,
 				A55627762200F7B9008F9947 /* View */,
 				A55627752200F7AE008F9947 /* Model */,
 				A55627602200F45B008F9947 /* AppDelegate.swift */,
-				A556276C2200F45D008F9947 /* LaunchScreen.storyboard */,
 				A556276F2200F45D008F9947 /* Info.plist */,
 				A58372BD221C38EA00E06B7C /* TrackStack.xcdatamodeld */,
+				A5AFC132225CBA44000615C8 /* Bitcoinaverage.swift */,
 			);
 			path = TrackStack;
 			sourceTree = "<group>";
@@ -138,6 +147,7 @@
 			children = (
 				A5AFC11B225B6311000615C8 /* coin_loader.json */,
 				A55627642200F45B008F9947 /* Main.storyboard */,
+				A556276C2200F45D008F9947 /* LaunchScreen.storyboard */,
 				A52F11DC2242606900FF517D /* Refresher.xib */,
 			);
 			path = View;
@@ -149,12 +159,13 @@
 				A55627622200F45B008F9947 /* MainViewController.swift */,
 				A5CB9719220849000015C438 /* SwipeTableViewController.swift */,
 				A5CB9721220E42FE0015C438 /* APIWorker.swift */,
-				A56B7AB62213879400B696E6 /* AddTransactionViewController.swift */,
 				A5AFC11D225B6370000615C8 /* IntroVC.swift */,
 				A526ECD322529C58003FAF1B /* MainVC.swift */,
 				A5AFC123225BCA00000615C8 /* SafetyVC.swift */,
+				A56B7AB62213879400B696E6 /* AddTransactionViewController.swift */,
 				A5AFC127225BCC1A000615C8 /* MainGradient.swift */,
 				A5CB971F22087C970015C438 /* TransactionCell.swift */,
+				A5AFC12B225CA5BC000615C8 /* Storyboarded.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -166,6 +177,15 @@
 				A58372C8221D871600E06B7C /* Info.plist */,
 			);
 			path = TrackStackTests;
+			sourceTree = "<group>";
+		};
+		A5AFC131225CB47B000615C8 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				A5AFC129225CA442000615C8 /* Coordinator.swift */,
+				A5AFC12D225CA68A000615C8 /* MainCoordinator.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 		AB159C210B1C9E81AC8CD607 /* Pods */ = {
@@ -311,6 +331,8 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-TrackStack/Pods-TrackStack-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
@@ -321,6 +343,8 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
@@ -338,13 +362,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				A58372BF221C38EA00E06B7C /* TrackStack.xcdatamodeld in Sources */,
+				A5AFC12E225CA68A000615C8 /* MainCoordinator.swift in Sources */,
 				A5CB972022087C970015C438 /* TransactionCell.swift in Sources */,
 				A5CB9722220E42FE0015C438 /* APIWorker.swift in Sources */,
 				A55627632200F45B008F9947 /* MainViewController.swift in Sources */,
+				A5AFC133225CBA44000615C8 /* Bitcoinaverage.swift in Sources */,
 				A5AFC124225BCA00000615C8 /* SafetyVC.swift in Sources */,
+				A5AFC12C225CA5BC000615C8 /* Storyboarded.swift in Sources */,
 				A5AFC128225BCC1A000615C8 /* MainGradient.swift in Sources */,
 				A526ECD422529C58003FAF1B /* MainVC.swift in Sources */,
 				A5CB971A220849000015C438 /* SwipeTableViewController.swift in Sources */,
+				A5AFC12A225CA442000615C8 /* Coordinator.swift in Sources */,
 				A56B7AB72213879400B696E6 /* AddTransactionViewController.swift in Sources */,
 				A55627612200F45B008F9947 /* AppDelegate.swift in Sources */,
 				A5AFC11E225B6370000615C8 /* IntroVC.swift in Sources */,

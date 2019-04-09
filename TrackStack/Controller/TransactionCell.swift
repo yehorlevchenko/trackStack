@@ -46,7 +46,7 @@ class TransactionCell: SwipeTableViewCell {
     }
     
     func updateData() {
-        print("Update")
+//        print("Update")
         currencyImageJump()
         diffLabelSwitch()
     }

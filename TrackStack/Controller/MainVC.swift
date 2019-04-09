@@ -13,15 +13,17 @@ import Alamofire
 import SwiftyJSON
 import SwipeCellKit
 
-class MainVC: UIViewController {
+class MainVC: UIViewController, Storyboarded {
     
     @IBOutlet weak var BTCpriceLabel: UILabel!
     @IBOutlet weak var LTCpriceLabel: UILabel!
     @IBOutlet weak var TransactionTable: UITableView!
     
+    weak var coordinator: MainCoordinator?
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     let baseUrl: String = "https://apiv2.bitcoinaverage.com/indices/global/ticker/"
+    let apiWorker = APIWorker()
     
     var transactionList = [Transaction]()
     var priceData = [String:Double]() {
@@ -37,8 +39,10 @@ class MainVC: UIViewController {
         TransactionTable.delegate = self
         TransactionTable.dataSource = self
 
-        if checkConnection() {
-            getPrice(for: ["BTC"])
+        if apiWorker.state == .idle {
+            if apiWorker.checkConnection() {
+                apiWorker.update(for: ["BTC", "LTC"])
+            }
         }
 
         // Setup gradient background
