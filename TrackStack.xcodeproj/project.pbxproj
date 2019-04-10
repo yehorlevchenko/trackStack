@@ -124,13 +124,13 @@
 			children = (
 				A5AFC131225CB47B000615C8 /* Coordinator */,
 				A5AFC125225BCAF6000615C8 /* Assets.xcassets */,
+				A5AFC132225CBA44000615C8 /* Bitcoinaverage.swift */,
 				A55627772200F7BE008F9947 /* Controller */,
 				A55627762200F7B9008F9947 /* View */,
 				A55627752200F7AE008F9947 /* Model */,
 				A55627602200F45B008F9947 /* AppDelegate.swift */,
 				A556276F2200F45D008F9947 /* Info.plist */,
 				A58372BD221C38EA00E06B7C /* TrackStack.xcdatamodeld */,
-				A5AFC132225CBA44000615C8 /* Bitcoinaverage.swift */,
 			);
 			path = TrackStack;
 			sourceTree = "<group>";

@@ -17,6 +17,8 @@ class IntroVC: UIViewController, Storyboarded {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.isHidden = true
+        
         // Setup gradient background
         let colors = MainGradient()
         let backgroundLayer = colors.gl

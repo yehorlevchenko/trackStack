@@ -12,8 +12,9 @@ import CoreData
 import Alamofire
 import SwiftyJSON
 import SwipeCellKit
+import Moya
 
-class MainVC: UIViewController, Storyboarded {
+class MainVC: UIViewController, Storyboarded, ContentShareable {
     
     @IBOutlet weak var BTCpriceLabel: UILabel!
     @IBOutlet weak var LTCpriceLabel: UILabel!
@@ -25,6 +26,7 @@ class MainVC: UIViewController, Storyboarded {
     let baseUrl: String = "https://apiv2.bitcoinaverage.com/indices/global/ticker/"
     let apiWorker = APIWorker()
     
+    let currencyList = [Bitcoinaverage.BTCUSD, Bitcoinaverage.LTCUSD]
     var transactionList = [Transaction]()
     var priceData = [String:Double]() {
         didSet {
@@ -38,11 +40,10 @@ class MainVC: UIViewController, Storyboarded {
 
         TransactionTable.delegate = self
         TransactionTable.dataSource = self
+        apiWorker.delegate = self
 
-        if apiWorker.state == .idle {
-            if apiWorker.checkConnection() {
-                apiWorker.update(for: ["BTC", "LTC"])
-            }
+        if apiWorker.checkConnection() {
+            apiWorker.update(for: currencyList)
         }
 
         // Setup gradient background
@@ -56,42 +57,19 @@ class MainVC: UIViewController, Storyboarded {
         loadTransactions()
     }
     
-    // MARK: Handling API data
-    func checkConnection() -> Bool {
-        return NetworkReachabilityManager()!.isReachable
-    }
-
-    func getPrice(for currencyList: [String]) {
-        for currency in currencyList {
-            let requestUrl: String = baseUrl + currency + "USD"
-
-            Alamofire.request(requestUrl, method: .get).validate().responseJSON { response in
-                if response.result.isSuccess {
-                    if let data = response.result.value {
-                        let rawData = JSON(data)
-                        self.unpackData(for: currency, from: rawData)
-                    }
-                }
-            }
-        }
-    }
-
-    func unpackData(for currency: String, from data: JSON) {
-        priceData[currency] = data["bid"].doubleValue
-
-        updateHUD()
-        
-        TransactionTable.reloadData()
+    func receiveUpdate(data: [String : Double]) {
+        priceData = priceData.merging(data) { (_, new) in new }
+        print("New data received")
     }
     
     func updateHUD() {
-        if let BTCprice = priceData["BTC"] {
+        if let BTCprice = priceData["BTC-USD"] {
             BTCpriceLabel.text = "BTC: \(BTCprice)"
         } else {
             BTCpriceLabel.text = "BTC: no data"
         }
 
-        if let LTCprice = priceData["LTC"] {
+        if let LTCprice = priceData["LTC-USD"] {
             LTCpriceLabel.text = "LTC: \(LTCprice)"
         } else {
             LTCpriceLabel.text = "LTC: no data"
@@ -133,6 +111,7 @@ class MainVC: UIViewController, Storyboarded {
     @IBAction func createTransaction(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "addTransaction", sender: self)
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addTransaction" {
             let destinationVC = segue.destination as! AddTransactionViewController
@@ -181,4 +160,8 @@ extension MainVC: UITableViewDelegate, UITableViewDataSource, SwipeTableViewCell
             cell.setSelected(false, animated: true)
         }
     }
+}
+
+protocol ContentShareable {
+    func receiveUpdate(data: [String: Double])
 }

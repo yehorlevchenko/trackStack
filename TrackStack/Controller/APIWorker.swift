@@ -13,99 +13,47 @@ import Moya
 
 class APIWorker {
     
-    enum State {
-        case idle
-        case processing
-        case ready
-    }
+    var delegate: ContentShareable?
     
-    let currencyConverter = ["BTC": Bitcoinaverage.BTCUSD, "LTC": Bitcoinaverage.LTCUSD]
     let provider = MoyaProvider<Bitcoinaverage>()
-    var state: State = .idle
-    var currencyData = [String:Double]() {
-        didSet {
-            self.state = .ready
-            print("APIWorker is ready: \(currencyData)")
-        }
-    }
-    var rawData: JSON? {
-        didSet {
-            do {
-                self.currencyData = try self.unpackData()
-            } catch {
-                print(error)
-            }
-            
-        }
-    }
-    
+    var rawData: JSON?
     
     func checkConnection() -> Bool {
         return NetworkReachabilityManager()!.isReachable
     }
     
-    func update(for currencyList: [String]) {
-        self.state = .processing
+    func update(for currencyList: [Bitcoinaverage]) {
         for currency in currencyList {
-            let convertedCurrency: Bitcoinaverage = currencyConverter[currency]!
-            getPrice(for: convertedCurrency)
+            getPrice(for: currency)
         }
     }
     
     private func getPrice(for currency: Bitcoinaverage) {
-        
         provider.request(currency) { result in
             switch result {
             case .success(let response):
                 do {
-                    self.rawData = try JSON(response.mapJSON())
+                    try response.filterSuccessfulStatusCodes()
+                    let data = try response.mapJSON()
+                    self.unpackData(rawData: data)
                 } catch {
-                    print(error)
+                    
                 }
             case .failure(let error):
                 print(error.response!)
             }
         }
     }
-//    private func getPrice(for currency: String) -> JSON {
-//        let requestUrl: String = baseUrl + currency + "USD"
-//        var rawData: JSON?
-//
-//        Alamofire.request(requestUrl, method: .get).validate().responseJSON { response -> JSON in
-//            print("Getting data")
-//            if response.result.isSuccess {
-//                print("Data received")
-//                if let data = response.result.value {
-//                    rawData = JSON(data)
-////                    self.unpackData(for: currency, from: rawData!)
-//                    return rawData
-//                }
-//            }
-//        }
-//    }
-
-//    func unpackData(for currency: String, from data: JSON) {
-//        var newCurrencyData: [String:Any] = [:]
-//        newCurrencyData["ticker"] = currency
-//        newCurrencyData["price"] = data["bid"].doubleValue
-//
-//        currencyData = newCurrencyData
-//    }
     
-    private func unpackData() throws -> [String:Double] {
-        guard let currency = rawData!["disply_symbol"].string else {
-            throw DataError.noDisplaySymbol
-        }
-        guard let price = rawData!["bid"].double else {
-            throw DataError.noBid
-        }
+    private func unpackData(rawData: Any) {
+        let cleanData = JSON(rawData)
         
-        var newData = [currency: price]
-        return newData
+        if let currency = cleanData["display_symbol"].string {
+            if let price = cleanData["bid"].double {
+                let newData = [currency: price]
+                print(newData)
+                delegate?.receiveUpdate(data: newData)
+            }
+        }
     }
-}
-
-enum DataError: Error {
-    case noDisplaySymbol
-    case noBid
 }
