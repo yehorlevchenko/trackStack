@@ -12,19 +12,23 @@ import CoreData
 import Alamofire
 import SwiftyJSON
 import SwipeCellKit
+import Moya
 
-class MainVC: UIViewController {
+class MainVC: UIViewController, Storyboarded, ContentShareable {
     
     @IBOutlet weak var BTCpriceLabel: UILabel!
     @IBOutlet weak var LTCpriceLabel: UILabel!
     @IBOutlet weak var TransactionTable: UITableView!
     
+    weak var coordinator: MainCoordinator?
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     let baseUrl: String = "https://apiv2.bitcoinaverage.com/indices/global/ticker/"
+    let apiWorker = APIWorker()
     
+    let currencyList = [Bitcoinaverage.BTCUSD, Bitcoinaverage.LTCUSD]
     var transactionList = [Transaction]()
-    var priceData = [String:Double]() { // Last prices for currencies
+    var priceData = [String:Double]() {
         didSet {
             print("/// Price data updated: \(priceData)")
             updateHUD()
@@ -33,69 +37,39 @@ class MainVC: UIViewController {
     
     override func viewDidLoad() {
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
-//
+
         TransactionTable.delegate = self
         TransactionTable.dataSource = self
+        apiWorker.delegate = self
 
-//        refresher.backgroundColor = UIColor.clear
-//        refresher.addTarget(Any?.self, action: #selector(MainVC.refreshData), for: UIControl.Event.valueChanged)
-//        loadRefresher()
-//        self.view.addSubview(refresher)
-        
+        if apiWorker.checkConnection() {
+            apiWorker.update(for: currencyList)
+        }
+
         // Setup gradient background
         let gradient = MainGradient()
         let backgroundLayer = gradient.gl
-        let sizeLength = self.view.bounds.size.height * 2
-        let defaultNavigationBarFrame = CGRect(x: 0, y: 0, width: sizeLength, height: 96)
-        backgroundLayer!.frame = defaultNavigationBarFrame
-        self.navigationController?.navigationBar.setBackgroundImage(gradient.image(fromLayer: backgroundLayer!), for: .default)
-
-
-        if checkConnection() {
-            getPrice(for: "BTC")
-            getPrice(for: "LTC")
-        }
-
+        backgroundLayer!.frame = CGRect(x: 0, y: 0, width: 1, height: 1)
+        let backgroundImage = gradient.image(fromLayer: backgroundLayer!)
+        self.navigationController?.navigationBar.setBackgroundImage(backgroundImage, for: .top, barMetrics: .default)
+        
+        
         loadTransactions()
     }
     
-    // MARK: Handling API data
-    func checkConnection() -> Bool {
-        return NetworkReachabilityManager()!.isReachable
-    }
-
-    func getPrice(for currency: String) {
-        let requestUrl: String = "\(baseUrl)\(currency)USD"
-
-        Alamofire.request(requestUrl, method: .get).validate().responseJSON { response in
-            if response.result.isSuccess {
-                if let data = response.result.value {
-                    let rawData = JSON(data)
-                    self.unpackData(for: currency, from: rawData)
-                }
-//                if self.refresher.isRefreshing {
-//                    self.refresher.endRefreshing()
-//                }
-            }
-        }
-    }
-
-    func unpackData(for currency: String, from data: JSON) {
-        priceData[currency] = data["bid"].doubleValue
-
-        updateHUD()
-        drawUpdate()
-        TransactionTable.reloadData()
+    func receiveUpdate(data: [String : Double]) {
+        priceData = priceData.merging(data) { (_, new) in new }
+        print("New data received")
     }
     
     func updateHUD() {
-        if let BTCprice = priceData["BTC"] {
+        if let BTCprice = priceData["BTC-USD"] {
             BTCpriceLabel.text = "BTC: \(BTCprice)"
         } else {
             BTCpriceLabel.text = "BTC: no data"
         }
 
-        if let LTCprice = priceData["LTC"] {
+        if let LTCprice = priceData["LTC-USD"] {
             LTCpriceLabel.text = "LTC: \(LTCprice)"
         } else {
             LTCpriceLabel.text = "LTC: no data"
@@ -137,6 +111,7 @@ class MainVC: UIViewController {
     @IBAction func createTransaction(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "addTransaction", sender: self)
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addTransaction" {
             let destinationVC = segue.destination as! AddTransactionViewController
@@ -147,7 +122,7 @@ class MainVC: UIViewController {
 
 extension MainVC: UITableViewDelegate, UITableViewDataSource, SwipeTableViewCellDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return transactionList.count // your number of cell here
+        return transactionList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -156,6 +131,8 @@ extension MainVC: UITableViewDelegate, UITableViewDataSource, SwipeTableViewCell
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! TransactionCell
         cell.delegate = self
         cell.setTransaction(transaction: transaction, currentPrice: priceData[currency] ?? 0)
+        cell.index = indexPath.row
+        cell.updateData()
         return cell
     }
     
@@ -178,11 +155,13 @@ extension MainVC: UITableViewDelegate, UITableViewDataSource, SwipeTableViewCell
         return options
     }
     
-    func drawUpdate() {
-        let cells = TransactionTable.visibleCells as! Array<TransactionCell>
-        
-        for cell in cells {
-            cell.updateData()
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) {
+            cell.setSelected(false, animated: true)
         }
     }
+}
+
+protocol ContentShareable {
+    func receiveUpdate(data: [String: Double])
 }
