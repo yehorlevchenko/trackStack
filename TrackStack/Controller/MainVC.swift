@@ -12,17 +12,21 @@ import CoreData
 import Alamofire
 import SwiftyJSON
 import SwipeCellKit
+import Moya
 
-class MainVC: UIViewController {
+class MainVC: UIViewController, Storyboarded, ContentShareable {
     
     @IBOutlet weak var BTCpriceLabel: UILabel!
     @IBOutlet weak var LTCpriceLabel: UILabel!
     @IBOutlet weak var TransactionTable: UITableView!
     
+    weak var coordinator: MainCoordinator?
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     let baseUrl: String = "https://apiv2.bitcoinaverage.com/indices/global/ticker/"
+    let apiWorker = APIWorker()
     
+    let currencyList = [Bitcoinaverage.BTCUSD, Bitcoinaverage.LTCUSD]
     var transactionList = [Transaction]()
     var priceData = [String:Double]() { // Last prices for currencies
         didSet {
@@ -36,12 +40,20 @@ class MainVC: UIViewController {
 //
         TransactionTable.delegate = self
         TransactionTable.dataSource = self
+        apiWorker.delegate = self
 
+<<<<<<< HEAD
+        if apiWorker.checkConnection() {
+            apiWorker.update(for: currencyList)
+        }
+
+=======
 //        refresher.backgroundColor = UIColor.clear
 //        refresher.addTarget(Any?.self, action: #selector(MainVC.refreshData), for: UIControl.Event.valueChanged)
 //        loadRefresher()
 //        self.view.addSubview(refresher)
         
+>>>>>>> parent of 7675519... Coordinators coming
         // Setup gradient background
         let gradient = MainGradient()
         let backgroundLayer = gradient.gl
@@ -59,6 +71,11 @@ class MainVC: UIViewController {
         loadTransactions()
     }
     
+<<<<<<< HEAD
+    func receiveUpdate(data: [String : Double]) {
+        priceData = priceData.merging(data) { (_, new) in new }
+        print("New data received")
+=======
     // MARK: Handling API data
     func checkConnection() -> Bool {
         return NetworkReachabilityManager()!.isReachable
@@ -86,16 +103,17 @@ class MainVC: UIViewController {
         updateHUD()
         drawUpdate()
         TransactionTable.reloadData()
+>>>>>>> parent of 7675519... Coordinators coming
     }
     
     func updateHUD() {
-        if let BTCprice = priceData["BTC"] {
+        if let BTCprice = priceData["BTC-USD"] {
             BTCpriceLabel.text = "BTC: \(BTCprice)"
         } else {
             BTCpriceLabel.text = "BTC: no data"
         }
 
-        if let LTCprice = priceData["LTC"] {
+        if let LTCprice = priceData["LTC-USD"] {
             LTCpriceLabel.text = "LTC: \(LTCprice)"
         } else {
             LTCpriceLabel.text = "LTC: no data"
@@ -137,6 +155,7 @@ class MainVC: UIViewController {
     @IBAction func createTransaction(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "addTransaction", sender: self)
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addTransaction" {
             let destinationVC = segue.destination as! AddTransactionViewController
@@ -185,4 +204,8 @@ extension MainVC: UITableViewDelegate, UITableViewDataSource, SwipeTableViewCell
             cell.updateData()
         }
     }
+}
+
+protocol ContentShareable {
+    func receiveUpdate(data: [String: Double])
 }
