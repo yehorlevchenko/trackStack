@@ -11,5 +11,5 @@ target 'TrackStack' do
     pod 'ChameleonFramework'
     pod 'SwipeCellKit'
     pod 'lottie-ios'
-
+    pod 'Moya', '~> 12.0'
 end
