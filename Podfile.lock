@@ -4,6 +4,12 @@ PODS:
     - ChameleonFramework/Default (= 2.1.0)
   - ChameleonFramework/Default (2.1.0)
   - lottie-ios (2.5.2)
+  - Moya (12.0.1):
+    - Moya/Core (= 12.0.1)
+  - Moya/Core (12.0.1):
+    - Alamofire (~> 4.1)
+    - Result (~> 4.0)
+  - Result (4.1.0)
   - SwiftyJSON (4.2.0)
   - SwipeCellKit (2.5.1)
 
@@ -11,6 +17,7 @@ DEPENDENCIES:
   - Alamofire
   - ChameleonFramework
   - lottie-ios
+  - Moya (~> 12.0)
   - SwiftyJSON
   - SwipeCellKit
 
@@ -19,6 +26,8 @@ SPEC REPOS:
     - Alamofire
     - ChameleonFramework
     - lottie-ios
+    - Moya
+    - Result
     - SwiftyJSON
     - SwipeCellKit
 
@@ -26,9 +35,11 @@ SPEC CHECKSUMS:
   Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   lottie-ios: 3fef45d3fabe63e3c7c2eb603dd64ddfffc73062
+  Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
+  Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   SwipeCellKit: 30fd6a4f8a8b8ac864ea389c8b4c8bac5ba5471a
 
-PODFILE CHECKSUM: f5767bae5a739bf975f6ee1b58cfafef65988a21
+PODFILE CHECKSUM: 29547021828613eca2d30b3c4cf08cc45609ef13
 
 COCOAPODS: 1.5.3
