@@ -8,6 +8,6 @@
 
 import UIKit
 
-class SafetyVC: UIViewController {
-    
+class SafetyVC: UIViewController, Storyboarded {
+    weak var coordinator: MainCoordinator?
 }

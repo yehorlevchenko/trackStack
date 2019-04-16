@@ -15,6 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A7BFE1A2945BA343D0993978D8CD9061"
+               BuildableName = "Pods_TrackStack.framework"
                BlueprintName = "Pods-TrackStack"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "Pods-TrackStack.framework">
@@ -40,6 +41,15 @@
       debugServiceExtension = "internal"
       buildConfiguration = "Debug"
       allowLocationSimulation = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "A7BFE1A2945BA343D0993978D8CD9061"
+            BuildableName = "Pods_TrackStack.framework"
+            BlueprintName = "Pods-TrackStack"
+            ReferencedContainer = "container:Pods.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

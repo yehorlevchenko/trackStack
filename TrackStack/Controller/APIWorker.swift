@@ -1,5 +1,5 @@
 //
-//  Network.swift
+//  APIWorker.swift
 //  TrackStack
 //
 //  Created by Yehor Levchenko on 2/9/19.
@@ -9,39 +9,51 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import Moya
 
 class APIWorker {
-
-    let baseUrl: String = "https://apiv2.bitcoinaverage.com/indices/global/ticker/all?crypto=BTC&fiat=USD,EUR"
-    var lastCurrencyData: [String:Any]?
+    
+    var delegate: ContentShareable?
+    
+    let provider = MoyaProvider<Bitcoinaverage>()
+    var rawData: JSON?
     
     func checkConnection() -> Bool {
         return NetworkReachabilityManager()!.isReachable
     }
     
-    func getPrice(for currency: String) {
-        let requestUrl: String = "\(baseUrl)"
-        var rawData: JSON?
-        
-        Alamofire.request(requestUrl, method: .get).validate().responseJSON { response in
-            print("Getting data")
-            if response.result.isSuccess {
-                print("Data received")
-                if let data = response.result.value {
-                    rawData = JSON(data)
-                    print("Last Price updated")
-                    self.unpackData(for: currency, from: rawData!)
+    func update(for currencyList: [Bitcoinaverage]) {
+        for currency in currencyList {
+            getPrice(for: currency)
+        }
+    }
+    
+    private func getPrice(for currency: Bitcoinaverage) {
+        provider.request(currency) { result in
+            switch result {
+            case .success(let response):
+                do {
+                    try response.filterSuccessfulStatusCodes()
+                    let data = try response.mapJSON()
+                    self.unpackData(rawData: data)
+                } catch {
+                    
                 }
+            case .failure(let error):
+                print(error.response!)
             }
         }
     }
     
-    func unpackData(for currency: String, from data: JSON) {
-        var newCurrencyData: [String:Any] = [:]
-        newCurrencyData["ticker"] = currency
-        newCurrencyData["price"] = data["bid"].doubleValue
-        newCurrencyData["date"] = data["display_timestamp"].stringValue
+    private func unpackData(rawData: Any) {
+        let cleanData = JSON(rawData)
         
-        lastCurrencyData = newCurrencyData
+        if let currency = cleanData["display_symbol"].string {
+            if let price = cleanData["bid"].double {
+                let newData = [currency: price]
+                print(newData)
+                delegate?.receiveUpdate(data: newData)
+            }
+        }
     }
 }

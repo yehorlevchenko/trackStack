@@ -35,7 +35,29 @@ class TransactionCell: SwipeTableViewCell {
     }
     
     func updateData() {
+<<<<<<< HEAD
+//        print("Update")
+        currencyImageJump()
+        diffLabelSwitch()
+    }
+    
+    func currencyImageJump() {
+        let jumpDelay = TimeInterval(Double(self.index) * 0.3)
+        let jump = UIViewPropertyAnimator(duration: 0.6, curve: .easeInOut) {
+            self.transactionCurrencyImage.center.y += 8
+        }
+        jump.startAnimation(afterDelay: jumpDelay)
+    }
+    
+    func diffLabelSwitch() {
+        let turn = UIViewPropertyAnimator(duration: 0.6, curve: .easeInOut) {
+            self.transactionPriceDiff.transform = self.transactionPriceDiff.transform.rotated(by: .pi/1)
+        }
+        
+        turn.startAnimation()
+=======
         print("Cell is updated")
+>>>>>>> parent of 7675519... Coordinators coming
     }
 }
 
