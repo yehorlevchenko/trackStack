@@ -28,7 +28,7 @@ class MainVC: UIViewController, Storyboarded, ContentShareable {
     
     let currencyList = [Bitcoinaverage.BTCUSD, Bitcoinaverage.LTCUSD]
     var transactionList = [Transaction]()
-    var priceData = [String:Double]() {
+    var priceData = [String:Double]() { // Last prices for currencies
         didSet {
             print("/// Price data updated: \(priceData)")
             updateHUD()
@@ -37,29 +37,73 @@ class MainVC: UIViewController, Storyboarded, ContentShareable {
     
     override func viewDidLoad() {
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
-
+//
         TransactionTable.delegate = self
         TransactionTable.dataSource = self
         apiWorker.delegate = self
 
+<<<<<<< HEAD
         if apiWorker.checkConnection() {
             apiWorker.update(for: currencyList)
         }
 
+=======
+//        refresher.backgroundColor = UIColor.clear
+//        refresher.addTarget(Any?.self, action: #selector(MainVC.refreshData), for: UIControl.Event.valueChanged)
+//        loadRefresher()
+//        self.view.addSubview(refresher)
+        
+>>>>>>> parent of 7675519... Coordinators coming
         // Setup gradient background
         let gradient = MainGradient()
         let backgroundLayer = gradient.gl
-        backgroundLayer!.frame = CGRect(x: 0, y: 0, width: 1, height: 1)
-        let backgroundImage = gradient.image(fromLayer: backgroundLayer!)
-        self.navigationController?.navigationBar.setBackgroundImage(backgroundImage, for: .top, barMetrics: .default)
-        
-        
+        let sizeLength = self.view.bounds.size.height * 2
+        let defaultNavigationBarFrame = CGRect(x: 0, y: 0, width: sizeLength, height: 96)
+        backgroundLayer!.frame = defaultNavigationBarFrame
+        self.navigationController?.navigationBar.setBackgroundImage(gradient.image(fromLayer: backgroundLayer!), for: .default)
+
+
+        if checkConnection() {
+            getPrice(for: "BTC")
+            getPrice(for: "LTC")
+        }
+
         loadTransactions()
     }
     
+<<<<<<< HEAD
     func receiveUpdate(data: [String : Double]) {
         priceData = priceData.merging(data) { (_, new) in new }
         print("New data received")
+=======
+    // MARK: Handling API data
+    func checkConnection() -> Bool {
+        return NetworkReachabilityManager()!.isReachable
+    }
+
+    func getPrice(for currency: String) {
+        let requestUrl: String = "\(baseUrl)\(currency)USD"
+
+        Alamofire.request(requestUrl, method: .get).validate().responseJSON { response in
+            if response.result.isSuccess {
+                if let data = response.result.value {
+                    let rawData = JSON(data)
+                    self.unpackData(for: currency, from: rawData)
+                }
+//                if self.refresher.isRefreshing {
+//                    self.refresher.endRefreshing()
+//                }
+            }
+        }
+    }
+
+    func unpackData(for currency: String, from data: JSON) {
+        priceData[currency] = data["bid"].doubleValue
+
+        updateHUD()
+        drawUpdate()
+        TransactionTable.reloadData()
+>>>>>>> parent of 7675519... Coordinators coming
     }
     
     func updateHUD() {
@@ -122,7 +166,7 @@ class MainVC: UIViewController, Storyboarded, ContentShareable {
 
 extension MainVC: UITableViewDelegate, UITableViewDataSource, SwipeTableViewCellDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return transactionList.count
+        return transactionList.count // your number of cell here
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -131,8 +175,6 @@ extension MainVC: UITableViewDelegate, UITableViewDataSource, SwipeTableViewCell
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! TransactionCell
         cell.delegate = self
         cell.setTransaction(transaction: transaction, currentPrice: priceData[currency] ?? 0)
-        cell.index = indexPath.row
-        cell.updateData()
         return cell
     }
     
@@ -155,9 +197,11 @@ extension MainVC: UITableViewDelegate, UITableViewDataSource, SwipeTableViewCell
         return options
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at: indexPath) {
-            cell.setSelected(false, animated: true)
+    func drawUpdate() {
+        let cells = TransactionTable.visibleCells as! Array<TransactionCell>
+        
+        for cell in cells {
+            cell.updateData()
         }
     }
 }

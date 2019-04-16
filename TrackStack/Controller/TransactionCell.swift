@@ -15,17 +15,6 @@ class TransactionCell: SwipeTableViewCell {
     var transaction: Transaction?
     let redColor = UIColor(hexString: "9F2121")
     let greenColor = UIColor(hexString: "219F4F")
-    let animator = UIViewPropertyAnimator(
-        duration: 0.3,
-        curve: .easeInOut) {
-            
-    }
-    // Cell index for animation delay, starting from 1
-    var index: Int = 0 {
-        didSet {
-            self.index += 1
-        }
-    }
     
     @IBOutlet weak var transactionAmountLabel: UILabel!
     @IBOutlet weak var transactionCurrencyImage: UIImageView!
@@ -46,6 +35,7 @@ class TransactionCell: SwipeTableViewCell {
     }
     
     func updateData() {
+<<<<<<< HEAD
 //        print("Update")
         currencyImageJump()
         diffLabelSwitch()
@@ -65,5 +55,11 @@ class TransactionCell: SwipeTableViewCell {
         }
         
         turn.startAnimation()
+=======
+        print("Cell is updated")
+>>>>>>> parent of 7675519... Coordinators coming
     }
 }
+
+
+
