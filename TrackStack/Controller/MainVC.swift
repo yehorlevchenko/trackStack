@@ -33,6 +33,7 @@ class MainVC: UIViewController, ContentShareable {
     @IBOutlet weak var BalanceAmountLabel: UILabel!
     @IBOutlet weak var TransactionTable: UITableView!
     
+    let settings = UserDefaults.standard
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     let baseUrl: String = "https://apiv2.bitcoinaverage.com/indices/global/ticker/"
     let apiWorker = APIWorker()
@@ -54,7 +55,9 @@ class MainVC: UIViewController, ContentShareable {
         TransactionTable.delegate = self
         TransactionTable.dataSource = self
         apiWorker.delegate = self
-
+        
+        print(settings.bool(forKey: "biometricLock"))
+        
         let backgroundFrame: CGRect = CGRect(x: 0, y: 0, width: view.frame.width, height: (UIApplication.shared.statusBarFrame.height + HUDView.frame.height + TransactionTable.rowHeight / 2))
         let background = UIView(frame: backgroundFrame)
         background.backgroundColor = UIColor.flatPurpleColorDark()

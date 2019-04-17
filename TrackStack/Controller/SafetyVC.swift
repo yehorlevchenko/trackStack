@@ -13,6 +13,7 @@ class SafetyVC: UIViewController, AuthLocked {
     
     @IBOutlet weak var disclaimerLabel: UILabel!
     let authorization = Authorization()
+    let settings = UserDefaults.standard
     let safetyText: String = """
     TrackStack will store the amount of currency you have bought, it’s original price and price dynamics retrospective.
 
@@ -31,6 +32,7 @@ class SafetyVC: UIViewController, AuthLocked {
     }
     
     func authorized() {
+        settings.set(true, forKey: "biometricLock")
         performSegue(withIdentifier: "mainScreen", sender: self)
     }
     
@@ -39,6 +41,7 @@ class SafetyVC: UIViewController, AuthLocked {
     }
     
     @IBAction func skipTapped(_ sender: Any) {
+        settings.set(false, forKey: "biometricLock")
         performSegue(withIdentifier: "mainScreen", sender: self)
     }
 }

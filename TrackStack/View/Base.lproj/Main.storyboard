@@ -39,7 +39,7 @@
                                         <color key="textColor" red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="touch_glyph" highlightedImage="touch_glyph" translatesAutoresizingMaskIntoConstraints="NO" id="an1-mK-Et0">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="touch_glyph" highlightedImage="touch_glyph" translatesAutoresizingMaskIntoConstraints="NO" id="an1-mK-Et0" userLabel="touchGlyph">
                                         <rect key="frame" x="324" y="10" width="60" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="Wqz-aU-l2P"/>
@@ -89,6 +89,7 @@
                         <outlet property="safetyButton" destination="bJc-R0-Bew" id="Uoq-YZ-awA"/>
                         <outlet property="safetyLabel" destination="55S-xL-Zf5" id="7C0-EP-oU8"/>
                         <outlet property="skipButton" destination="oC5-vw-NdT" id="Qbj-S9-yaF"/>
+                        <outlet property="touchGlyph" destination="an1-mK-Et0" id="Rc4-Ma-5of"/>
                         <segue destination="jiW-0G-ebT" kind="show" identifier="safetyScreen" id="BbA-ZU-EQt"/>
                     </connections>
                 </viewController>
@@ -242,7 +243,7 @@ It is recommended to use Touch ID to protect your data locally. Otherwise, your 
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$24 891.78" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jb2-fH-wBq" userLabel="BalanceAmountLabel">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jb2-fH-wBq" userLabel="BalanceAmountLabel">
                                                         <rect key="frame" x="20" y="50" width="177" height="45"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="wvY-yR-5KB"/>
