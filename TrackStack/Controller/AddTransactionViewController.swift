@@ -77,7 +77,7 @@ class AddTransactionViewController: UIViewController, Storyboarded {
         
         let currencyBTC: UIAlertAction = UIAlertAction(title: "BTC", style: .default) { action -> Void in
             self.currencyField.text = "BTC"
-            self.currencyPicked = "BTC"
+            self.currencyPicked = "BTC-USD"
             self.validateField(self.currencyField)
             if let priceHint = self.delegate.priceData[self.currencyPicked] {
                 self.priceField.text = String(priceHint)
@@ -88,7 +88,7 @@ class AddTransactionViewController: UIViewController, Storyboarded {
         
         let currencyLTC: UIAlertAction = UIAlertAction(title: "LTC", style: .default) { action -> Void in
             self.currencyField.text = "LTC"
-            self.currencyPicked = "LTC"
+            self.currencyPicked = "LTC-USD"
             self.validateField(self.currencyField)
             if let priceHint = self.delegate.priceData[self.currencyPicked] {
                 self.priceField.text = String(priceHint)
@@ -170,18 +170,21 @@ class AddTransactionViewController: UIViewController, Storyboarded {
     
     @IBAction func createTransaction(_ sender: Any) {
         let amount: Double = Double(amountField.text!)!
-        let currency: String = currencyField.text!
+        let fiatCurrency: String = delegate.pickedFiatCurrency.rawValue
+        let cryptoCurrency: String = currencyField.text!
         let priceOrigin: Double = Double(priceField.text!)!
-        let priceDiff: Double = delegate.priceData[currency]! / priceOrigin * 100
+        let priceLast: Double = delegate.priceData["\(cryptoCurrency)-\(fiatCurrency)"]!
         
         newTransaction = Transaction(context: context)
         newTransaction!.amount = amount
-        newTransaction!.currency = currency
+        newTransaction!.currency = cryptoCurrency
         newTransaction!.priceOrigin = priceOrigin
-        newTransaction!.priceDiff = priceDiff
+        newTransaction!.priceLast = priceLast
+        newTransaction!.countDiff()
         
         delegate.addTransaction(newTransaction!)
         delegate.TransactionTable.reloadData()
+        delegate.updateHUD()
         
         self.dismiss(animated: true, completion: nil)
     }

@@ -10,8 +10,8 @@ import Foundation
 import Moya
 
 public enum Bitcoinaverage {
-    case BTCUSD
-    case LTCUSD
+    case BTC
+    case LTC
 }
 
 extension Bitcoinaverage: TargetType {
@@ -21,15 +21,15 @@ extension Bitcoinaverage: TargetType {
     
     public var path: String {
         switch self {
-        case .BTCUSD: return "/BTCUSD"
-        case .LTCUSD: return "/LTCUSD"
+        case .BTC: return "/BTCUSD"
+        case .LTC: return "/LTCUSD"
         }
     }
     
     public var method: Moya.Method {
         switch self {
-        case .BTCUSD: return .get
-        case .LTCUSD: return .get
+        case .BTC: return .get
+        case .LTC: return .get
         }
     }
     
@@ -39,8 +39,8 @@ extension Bitcoinaverage: TargetType {
     
     public var task: Task {
         switch self {
-        case .BTCUSD: return .requestPlain
-        case .LTCUSD: return .requestPlain
+        case .BTC: return .requestPlain
+        case .LTC: return .requestPlain
         }
     }
     

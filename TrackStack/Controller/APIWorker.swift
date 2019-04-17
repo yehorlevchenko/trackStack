@@ -12,17 +12,19 @@ import SwiftyJSON
 import Moya
 
 class APIWorker {
-    
-    var delegate: ContentShareable?
-    
     let provider = MoyaProvider<Bitcoinaverage>()
+    var delegate: ContentShareable?
+    var currency: String = FiatCurrency.USD.rawValue
+    var requestedDataCount = 0
     var rawData: JSON?
+    var preparedData = [String:Double]()
     
     func checkConnection() -> Bool {
         return NetworkReachabilityManager()!.isReachable
     }
     
     func update(for currencyList: [Bitcoinaverage]) {
+        requestedDataCount = currencyList.count
         for currency in currencyList {
             getPrice(for: currency)
         }
@@ -33,11 +35,10 @@ class APIWorker {
             switch result {
             case .success(let response):
                 do {
-                    try response.filterSuccessfulStatusCodes()
                     let data = try response.mapJSON()
                     self.unpackData(rawData: data)
                 } catch {
-                    
+                    print("/// Network error: \(error)")
                 }
             case .failure(let error):
                 print(error.response!)
@@ -50,9 +51,11 @@ class APIWorker {
         
         if let currency = cleanData["display_symbol"].string {
             if let price = cleanData["bid"].double {
-                let newData = [currency: price]
-                print(newData)
-                delegate?.receiveUpdate(data: newData)
+                preparedData.updateValue(price, forKey: currency)
+                
+                if preparedData.count == requestedDataCount {
+                    delegate?.receiveUpdate(data: preparedData)
+                }
             }
         }
     }
