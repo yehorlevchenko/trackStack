@@ -25,7 +25,7 @@ struct ValidData {
 }
 
 class AddTransactionViewController: UIViewController, Storyboarded {
-
+    
     @IBOutlet weak var priceField: UITextField!
     @IBOutlet weak var currencyField: UITextField!
     @IBOutlet weak var amountField: UITextField!
@@ -49,10 +49,10 @@ class AddTransactionViewController: UIViewController, Storyboarded {
         amountField.delegate = self
         
         // View movement on keyboard appears is disabled
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        //        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        //        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-
+    
     // MARK: Keyboard handler
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
@@ -61,7 +61,7 @@ class AddTransactionViewController: UIViewController, Storyboarded {
             }
         }
     }
-
+    
     @objc func keyboardWillHide(notification: NSNotification) {
         if self.view.frame.origin.y != 0 {
             self.view.frame.origin.y = 0
@@ -70,7 +70,7 @@ class AddTransactionViewController: UIViewController, Storyboarded {
     
     func showCurrencyPicker() {
         let myAlertController: UIAlertController = UIAlertController(title: "Choose currency", message: "", preferredStyle: .actionSheet)
-
+        
         let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
         }
         myAlertController.addAction(cancelAction)
@@ -96,7 +96,7 @@ class AddTransactionViewController: UIViewController, Storyboarded {
             }
         }
         myAlertController.addAction(currencyLTC)
-
+        
         view.endEditing(true)
         currencyField.inputView = myAlertController.view
         self.present(myAlertController, animated: true, completion: nil)
@@ -115,7 +115,7 @@ class AddTransactionViewController: UIViewController, Storyboarded {
                     fieldIsInvalid(field: textField, reason: .notDouble)
                 }
             }
-            // Fields with picked values
+                // Fields with picked values
             else if textField == currencyField {
                 if currencyList.contains(data) {
                     fieldIsValid(field: textField)
