@@ -8,10 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		14B8F395A154795A1302A9CD /* Pods_TrackStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66584C735AE7A4058F55025A /* Pods_TrackStack.framework */; };
+		A504CE892260987600B6033D /* Bitcoinaverage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A504CE882260987600B6033D /* Bitcoinaverage.swift */; };
+		A504CED92263D8FF00B6033D /* MainGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A504CED82263D8FF00B6033D /* MainGradient.swift */; };
+		A504CEEA22667B2C00B6033D /* Transaction+CoreDataClass copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A504CEE822667B2C00B6033D /* Transaction+CoreDataClass copy.swift */; };
 		A526ECD422529C58003FAF1B /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A526ECD322529C58003FAF1B /* MainVC.swift */; };
 		A52F11DD2242606900FF517D /* Refresher.xib in Resources */ = {isa = PBXBuildFile; fileRef = A52F11DC2242606900FF517D /* Refresher.xib */; };
 		A55627612200F45B008F9947 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55627602200F45B008F9947 /* AppDelegate.swift */; };
-		A55627632200F45B008F9947 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55627622200F45B008F9947 /* MainViewController.swift */; };
 		A55627662200F45B008F9947 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A55627642200F45B008F9947 /* Main.storyboard */; };
 		A556276E2200F45D008F9947 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A556276C2200F45D008F9947 /* LaunchScreen.storyboard */; };
 		A56B7AB72213879400B696E6 /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B7AB62213879400B696E6 /* AddTransactionViewController.swift */; };
@@ -21,8 +23,6 @@
 		A5AFC11E225B6370000615C8 /* IntroVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AFC11D225B6370000615C8 /* IntroVC.swift */; };
 		A5AFC124225BCA00000615C8 /* SafetyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AFC123225BCA00000615C8 /* SafetyVC.swift */; };
 		A5AFC126225BCAF7000615C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5AFC125225BCAF6000615C8 /* Assets.xcassets */; };
-		A5AFC128225BCC1A000615C8 /* MainGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AFC127225BCC1A000615C8 /* MainGradient.swift */; };
-		A5CB971A220849000015C438 /* SwipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CB9719220849000015C438 /* SwipeTableViewController.swift */; };
 		A5CB972022087C970015C438 /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CB971F22087C970015C438 /* TransactionCell.swift */; };
 		A5CB9722220E42FE0015C438 /* APIWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CB9721220E42FE0015C438 /* APIWorker.swift */; };
 /* End PBXBuildFile section */
@@ -41,11 +41,13 @@
 		5290C205DF380EEB1127E5C9 /* Pods-TrackStack.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrackStack.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TrackStack/Pods-TrackStack.debug.xcconfig"; sourceTree = "<group>"; };
 		66584C735AE7A4058F55025A /* Pods_TrackStack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrackStack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9418CCE9BECA8798AB9AC000 /* Pods-TrackStack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrackStack.release.xcconfig"; path = "Pods/Target Support Files/Pods-TrackStack/Pods-TrackStack.release.xcconfig"; sourceTree = "<group>"; };
+		A504CE882260987600B6033D /* Bitcoinaverage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bitcoinaverage.swift; sourceTree = "<group>"; };
+		A504CED82263D8FF00B6033D /* MainGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainGradient.swift; path = Controller/MainGradient.swift; sourceTree = "<group>"; };
+		A504CEE822667B2C00B6033D /* Transaction+CoreDataClass copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Transaction+CoreDataClass copy.swift"; sourceTree = "<group>"; };
 		A526ECD322529C58003FAF1B /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		A52F11DC2242606900FF517D /* Refresher.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Refresher.xib; sourceTree = "<group>"; };
 		A556275D2200F45B008F9947 /* TrackStack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrackStack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A55627602200F45B008F9947 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A55627622200F45B008F9947 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		A55627652200F45B008F9947 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A556276D2200F45D008F9947 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A556276F2200F45D008F9947 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -58,8 +60,6 @@
 		A5AFC11D225B6370000615C8 /* IntroVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroVC.swift; sourceTree = "<group>"; };
 		A5AFC123225BCA00000615C8 /* SafetyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafetyVC.swift; sourceTree = "<group>"; };
 		A5AFC125225BCAF6000615C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A5AFC127225BCC1A000615C8 /* MainGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGradient.swift; sourceTree = "<group>"; };
-		A5CB9719220849000015C438 /* SwipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTableViewController.swift; sourceTree = "<group>"; };
 		A5CB971F22087C970015C438 /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
 		A5CB9721220E42FE0015C438 /* APIWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIWorker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -114,6 +114,7 @@
 		A556275F2200F45B008F9947 /* TrackStack */ = {
 			isa = PBXGroup;
 			children = (
+				A504CED82263D8FF00B6033D /* MainGradient.swift */,
 				A5AFC125225BCAF6000615C8 /* Assets.xcassets */,
 				A55627772200F7BE008F9947 /* Controller */,
 				A55627762200F7B9008F9947 /* View */,
@@ -122,6 +123,7 @@
 				A556276C2200F45D008F9947 /* LaunchScreen.storyboard */,
 				A556276F2200F45D008F9947 /* Info.plist */,
 				A58372BD221C38EA00E06B7C /* TrackStack.xcdatamodeld */,
+				A504CE882260987600B6033D /* Bitcoinaverage.swift */,
 			);
 			path = TrackStack;
 			sourceTree = "<group>";
@@ -129,6 +131,7 @@
 		A55627752200F7AE008F9947 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A504CEE822667B2C00B6033D /* Transaction+CoreDataClass copy.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -146,14 +149,11 @@
 		A55627772200F7BE008F9947 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				A55627622200F45B008F9947 /* MainViewController.swift */,
-				A5CB9719220849000015C438 /* SwipeTableViewController.swift */,
 				A5CB9721220E42FE0015C438 /* APIWorker.swift */,
 				A56B7AB62213879400B696E6 /* AddTransactionViewController.swift */,
 				A5AFC11D225B6370000615C8 /* IntroVC.swift */,
 				A526ECD322529C58003FAF1B /* MainVC.swift */,
 				A5AFC123225BCA00000615C8 /* SafetyVC.swift */,
-				A5AFC127225BCC1A000615C8 /* MainGradient.swift */,
 				A5CB971F22087C970015C438 /* TransactionCell.swift */,
 			);
 			path = Controller;
@@ -341,14 +341,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A504CED92263D8FF00B6033D /* MainGradient.swift in Sources */,
 				A58372BF221C38EA00E06B7C /* TrackStack.xcdatamodeld in Sources */,
+				A504CEEA22667B2C00B6033D /* Transaction+CoreDataClass copy.swift in Sources */,
 				A5CB972022087C970015C438 /* TransactionCell.swift in Sources */,
+				A504CE892260987600B6033D /* Bitcoinaverage.swift in Sources */,
 				A5CB9722220E42FE0015C438 /* APIWorker.swift in Sources */,
-				A55627632200F45B008F9947 /* MainViewController.swift in Sources */,
 				A5AFC124225BCA00000615C8 /* SafetyVC.swift in Sources */,
-				A5AFC128225BCC1A000615C8 /* MainGradient.swift in Sources */,
 				A526ECD422529C58003FAF1B /* MainVC.swift in Sources */,
-				A5CB971A220849000015C438 /* SwipeTableViewController.swift in Sources */,
 				A56B7AB72213879400B696E6 /* AddTransactionViewController.swift in Sources */,
 				A55627612200F45B008F9947 /* AppDelegate.swift in Sources */,
 				A5AFC11E225B6370000615C8 /* IntroVC.swift in Sources */,

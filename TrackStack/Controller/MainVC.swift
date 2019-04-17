@@ -13,96 +13,83 @@ import Alamofire
 import SwiftyJSON
 import SwipeCellKit
 
-class MainVC: UIViewController {
+protocol ContentShareable {
+    func receiveUpdate(data: [String:Double])
+}
+
+public enum FiatCurrency: String {
+    case USD = "USD"
+}
+
+public enum FiatGlyph: String {
+    case USD = "$"
+}
+
+class MainVC: UIViewController, ContentShareable {
     
+    @IBOutlet weak var HUDView: UIView!
     @IBOutlet weak var BTCpriceLabel: UILabel!
     @IBOutlet weak var LTCpriceLabel: UILabel!
+    @IBOutlet weak var BalanceAmountLabel: UILabel!
     @IBOutlet weak var TransactionTable: UITableView!
-    
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     let baseUrl: String = "https://apiv2.bitcoinaverage.com/indices/global/ticker/"
-    
+    let apiWorker = APIWorker()
+    let cryptoCurrencyList = [Bitcoinaverage.BTC, Bitcoinaverage.LTC]
+    var pickedFiatCurrency: FiatCurrency = .USD
+    var pickedFiatGlyph: FiatGlyph = .USD
     var transactionList = [Transaction]()
     var priceData = [String:Double]() { // Last prices for currencies
         didSet {
             print("/// Price data updated: \(priceData)")
+            processUpdate()
             updateHUD()
+            TransactionTable.reloadData()
+            drawUpdate()
         }
     }
     
     override func viewDidLoad() {
-        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
-//
         TransactionTable.delegate = self
         TransactionTable.dataSource = self
+        apiWorker.delegate = self
+
+        let backgroundFrame: CGRect = CGRect(x: 0, y: 0, width: view.frame.width, height: (UIApplication.shared.statusBarFrame.height + HUDView.frame.height + TransactionTable.rowHeight / 2))
+        let background = UIView(frame: backgroundFrame)
+        background.backgroundColor = UIColor.flatPurpleColorDark()
+        view.addSubview(background)
+        view.sendSubviewToBack(background)
+        
+//        navigationController?.navigationBar.barTintColor = UIColor.flatPurpleColorDark()
 
 //        refresher.backgroundColor = UIColor.clear
 //        refresher.addTarget(Any?.self, action: #selector(MainVC.refreshData), for: UIControl.Event.valueChanged)
 //        loadRefresher()
 //        self.view.addSubview(refresher)
         
-        // Setup gradient background
-        let gradient = MainGradient()
-        let backgroundLayer = gradient.gl
-        let sizeLength = self.view.bounds.size.height * 2
-        let defaultNavigationBarFrame = CGRect(x: 0, y: 0, width: sizeLength, height: 96)
-        backgroundLayer!.frame = defaultNavigationBarFrame
-        self.navigationController?.navigationBar.setBackgroundImage(gradient.image(fromLayer: backgroundLayer!), for: .default)
-
-
-        if checkConnection() {
-            getPrice(for: "BTC")
-            getPrice(for: "LTC")
+        if apiWorker.checkConnection() {
+            apiWorker.update(for: cryptoCurrencyList)
         }
-
+        
         loadTransactions()
     }
     
+    
     // MARK: Handling API data
-    func checkConnection() -> Bool {
-        return NetworkReachabilityManager()!.isReachable
-    }
-
-    func getPrice(for currency: String) {
-        let requestUrl: String = "\(baseUrl)\(currency)USD"
-
-        Alamofire.request(requestUrl, method: .get).validate().responseJSON { response in
-            if response.result.isSuccess {
-                if let data = response.result.value {
-                    let rawData = JSON(data)
-                    self.unpackData(for: currency, from: rawData)
-                }
-//                if self.refresher.isRefreshing {
-//                    self.refresher.endRefreshing()
-//                }
-            }
-        }
-    }
-
-    func unpackData(for currency: String, from data: JSON) {
-        priceData[currency] = data["bid"].doubleValue
-
-        updateHUD()
-        drawUpdate()
-        TransactionTable.reloadData()
+    func receiveUpdate(data: [String:Double]) {
+        priceData = priceData.merging(data) { (_, new) in new }
     }
     
-    func updateHUD() {
-        if let BTCprice = priceData["BTC"] {
-            BTCpriceLabel.text = "BTC: \(BTCprice)"
-        } else {
-            BTCpriceLabel.text = "BTC: no data"
-        }
-
-        if let LTCprice = priceData["LTC"] {
-            LTCpriceLabel.text = "LTC: \(LTCprice)"
-        } else {
-            LTCpriceLabel.text = "LTC: no data"
+    func processUpdate() {
+        for transaction in transactionList {
+            transaction.priceLast = priceData["\(transaction.currency!)-\(pickedFiatCurrency)"]!
+            transaction.countDiff()
         }
     }
+    
 
-    // MARK: Handling transaction data
+    // MARK: Handling transaction and CoreData
     func addTransaction(_ transaction: Transaction) {
         transactionList.append(transaction)
 
@@ -133,7 +120,8 @@ class MainVC: UIViewController {
         saveTransactions()
     }
     
- // MARK: Segue handling
+    
+    // MARK: Segue handling
     @IBAction func createTransaction(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "addTransaction", sender: self)
     }
@@ -143,46 +131,113 @@ class MainVC: UIViewController {
             destinationVC.delegate = self
         }
     }
+    
+    
+    // MARK: HUD-related
+    func updateHUD() {
+        let btcTicker: String = "BTC-\(pickedFiatCurrency.rawValue)"
+        let ltcTicker: String = "LTC-\(pickedFiatCurrency.rawValue)"
+        let fiatGlyph: String = pickedFiatGlyph.rawValue
+        let balance: String = String(format: "\(fiatGlyph)%.2f", countBalance())
+        
+        BalanceAmountLabel.text = balance
+        
+        if let BTCprice = priceData[btcTicker] {
+            BTCpriceLabel.text = "BTC: \(fiatGlyph)\(BTCprice)"
+        } else {
+            BTCpriceLabel.text = "BTC: no data"
+        }
+        if let LTCprice = priceData[ltcTicker] {
+            LTCpriceLabel.text = "LTC: \(fiatGlyph)\(LTCprice)"
+        } else {
+            LTCpriceLabel.text = "LTC: no data"
+        }
+    }
+    
+    func countBalance() -> Double {
+        var balance: Double = 0
+        for item in transactionList {
+            balance += item.amount * item.priceLast
+        }
+        
+        return balance
+    }
 }
 
-extension MainVC: UITableViewDelegate, UITableViewDataSource, SwipeTableViewCellDelegate {
+extension MainVC: UITableViewDelegate, UITableViewDataSource, SwipeTableViewCellDelegate, SwipeActionTransitioning {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return transactionList.count // your number of cell here
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let transaction = transactionList[indexPath.row]
-        let currency: String = transaction.currency!
+        let currency: String = "\(transaction.currency!)-\(pickedFiatCurrency.rawValue)"
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! TransactionCell
         cell.delegate = self
-        cell.setTransaction(transaction: transaction, currentPrice: priceData[currency] ?? 0)
+        cell.tuneView()
+        cell.setTransaction(transaction: transaction, currentPrice: priceData[currency] ?? 0, fiat: pickedFiatCurrency, glyph: pickedFiatGlyph)
         return cell
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         guard orientation == .right else { return nil }
         
-        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
+        let deleteAction = SwipeAction(style: .default, title: "Delete") { action, indexPath in
             self.deleteTransaction(at: indexPath)
+            self.TransactionTable.reloadData()
+            self.updateHUD()
+        }
+        deleteAction.transitionDelegate = self
+        deleteAction.image = UIImage(named: "delete_icon")
+
+        return [deleteAction]
+    }
+    
+    // Custom swipe action appearance
+    func didTransition(with context: SwipeActionTransitioningContext) {
+        let cellSize = self.TransactionTable.rowHeight
+        let buttonSize = cellSize / 4 * 2.5
+        let marginSize = (cellSize - buttonSize) / 2
+        let initialScale: CGFloat = 0.8
+        let threshold: CGFloat = 0.2
+        let duration: TimeInterval = 0.3
+        let button = context.button
+        button.transform = .init(scaleX: 0.8, y: 0.8)
+        button.layer.frame = CGRect(x: 0, y: marginSize, width: buttonSize, height: buttonSize)
+        button.layer.cornerRadius = 0.5 * button.bounds.size.width
+        button.clipsToBounds = false
+        button.backgroundColor = UIColor.flatRedColorDark()
+        
+        if context.oldPercentVisible == 0 {
+            context.button.transform = .init(scaleX: initialScale, y: initialScale)
         }
         
-        deleteAction.image = UIImage(named: "delete")
-        
-        return [deleteAction]
+        if context.oldPercentVisible < threshold && context.newPercentVisible >= threshold {
+            UIView.animate(withDuration: duration) {
+                context.button.transform = .identity
+            }
+        } else if context.oldPercentVisible >= threshold && context.newPercentVisible < threshold {
+            UIView.animate(withDuration: duration) {
+                context.button.transform = .init(scaleX: initialScale, y: initialScale)
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
         var options = SwipeOptions()
-        options.expansionStyle = .destructive
-        options.transitionStyle = .border
+        options.expansionStyle = .none
+        options.transitionStyle = .drag
+        options.buttonVerticalAlignment = .center
+        options.minimumButtonWidth = 80
         return options
     }
     
     func drawUpdate() {
         let cells = TransactionTable.visibleCells as! Array<TransactionCell>
         
-        for cell in cells {
-            cell.updateData()
+        for (index, cell) in cells.enumerated() {
+            cell.updateData(index: index)
         }
     }
 }
