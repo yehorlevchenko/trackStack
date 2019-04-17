@@ -9,12 +9,15 @@
 import Foundation
 import Lottie
 
-class IntroVC: UIViewController {
+class IntroVC: UIViewController, Storyboarded {
     
     @IBOutlet weak var SafetyButton: UIView!
+    weak var coordinator: MainCoordinator?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.isHidden = true
         
         // Setup gradient background
         let colors = MainGradient()
@@ -35,11 +38,15 @@ class IntroVC: UIViewController {
         animationView.play()
         
         // Setup Safety button
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(self.proceedToSafety))
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(self.safetyTapped))
         self.SafetyButton.addGestureRecognizer(gesture)
     }
+    @IBAction func skipToMainTapped(_ sender: UIButton) {
+        coordinator?.proceedToMain()
+    }
     
-    @objc func proceedToSafety(sender: UITapGestureRecognizer) {
-        performSegue(withIdentifier: "safetyScreen", sender: self)
+    @objc func safetyTapped(sender: UITapGestureRecognizer) {
+//        performSegue(withIdentifier: "safetyScreen", sender: self)
+        coordinator?.proceedToSafety()
     }
 }

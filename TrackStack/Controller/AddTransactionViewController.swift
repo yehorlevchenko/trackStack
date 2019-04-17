@@ -24,7 +24,7 @@ struct ValidData {
     var amountValid: Bool = false
 }
 
-class AddTransactionViewController: UIViewController {
+class AddTransactionViewController: UIViewController, Storyboarded {
 
     @IBOutlet weak var priceField: UITextField!
     @IBOutlet weak var currencyField: UITextField!
@@ -32,8 +32,10 @@ class AddTransactionViewController: UIViewController {
     @IBOutlet weak var addTransactionButton: UIButton!
     @IBOutlet weak var currencyPicker: UIPickerView!
     
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     weak var delegate: MainVC!
+    weak var coordinator: MainCoordinator?
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var newTransaction: Transaction?
     var inputData: ValidData = ValidData()
     var currencyPicked: String = "BTC"

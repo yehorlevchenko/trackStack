@@ -116,11 +116,11 @@
 			children = (
 				A504CED82263D8FF00B6033D /* MainGradient.swift */,
 				A5AFC125225BCAF6000615C8 /* Assets.xcassets */,
+				A5AFC132225CBA44000615C8 /* Bitcoinaverage.swift */,
 				A55627772200F7BE008F9947 /* Controller */,
 				A55627762200F7B9008F9947 /* View */,
 				A55627752200F7AE008F9947 /* Model */,
 				A55627602200F45B008F9947 /* AppDelegate.swift */,
-				A556276C2200F45D008F9947 /* LaunchScreen.storyboard */,
 				A556276F2200F45D008F9947 /* Info.plist */,
 				A58372BD221C38EA00E06B7C /* TrackStack.xcdatamodeld */,
 				A504CE882260987600B6033D /* Bitcoinaverage.swift */,
@@ -141,6 +141,7 @@
 			children = (
 				A5AFC11B225B6311000615C8 /* coin_loader.json */,
 				A55627642200F45B008F9947 /* Main.storyboard */,
+				A556276C2200F45D008F9947 /* LaunchScreen.storyboard */,
 				A52F11DC2242606900FF517D /* Refresher.xib */,
 			);
 			path = View;
@@ -150,11 +151,11 @@
 			isa = PBXGroup;
 			children = (
 				A5CB9721220E42FE0015C438 /* APIWorker.swift */,
-				A56B7AB62213879400B696E6 /* AddTransactionViewController.swift */,
 				A5AFC11D225B6370000615C8 /* IntroVC.swift */,
 				A526ECD322529C58003FAF1B /* MainVC.swift */,
 				A5AFC123225BCA00000615C8 /* SafetyVC.swift */,
 				A5CB971F22087C970015C438 /* TransactionCell.swift */,
+				A5AFC12B225CA5BC000615C8 /* Storyboarded.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -166,6 +167,15 @@
 				A58372C8221D871600E06B7C /* Info.plist */,
 			);
 			path = TrackStackTests;
+			sourceTree = "<group>";
+		};
+		A5AFC131225CB47B000615C8 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				A5AFC129225CA442000615C8 /* Coordinator.swift */,
+				A5AFC12D225CA68A000615C8 /* MainCoordinator.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 		AB159C210B1C9E81AC8CD607 /* Pods */ = {

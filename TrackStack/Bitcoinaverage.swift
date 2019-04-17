@@ -9,14 +9,12 @@
 import Foundation
 import Moya
 
-
 public enum Bitcoinaverage {
     case BTC
     case LTC
 }
 
 extension Bitcoinaverage: TargetType {
-    
     public var baseURL: URL {
         return URL(string: "https://apiv2.bitcoinaverage.com/indices/global/ticker")!
     }
