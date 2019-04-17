@@ -6,7 +6,7 @@
 //  Copyright © 2019 Yehor Levchenko. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import Lottie
 
 class IntroVC: UIViewController {

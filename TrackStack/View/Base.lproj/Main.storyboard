@@ -83,6 +83,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="vHa-x5-qfB"/>
                     </view>
+                    <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="SafetyButton" destination="bJc-R0-Bew" id="YpT-rz-LDt"/>
                         <segue destination="jiW-0G-ebT" kind="show" identifier="safetyScreen" id="BbA-ZU-EQt"/>
