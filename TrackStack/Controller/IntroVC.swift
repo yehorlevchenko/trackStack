@@ -9,12 +9,20 @@
 import UIKit
 import Lottie
 
-class IntroVC: UIViewController {
+class IntroVC: UIViewController, AuthLocked {
     
-    @IBOutlet weak var SafetyButton: UIView!
+    @IBOutlet weak var skipButton: UIButton!
+    @IBOutlet weak var safetyButton: UIView!
+    @IBOutlet weak var safetyLabel: UILabel!
+    let settings = UserDefaults.standard
+    let authorization = Authorization()
+    var launchedOnce: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        authorization.delegate = self
+        launchedOnce = settings.bool(forKey: "launchedOnce")
         
         self.navigationController?.navigationBar.isHidden = true
         
@@ -38,13 +46,31 @@ class IntroVC: UIViewController {
         
         // Setup Safety button
         let gesture = UITapGestureRecognizer(target: self, action: #selector(self.safetyTapped))
-        self.SafetyButton.addGestureRecognizer(gesture)
+        self.safetyButton.addGestureRecognizer(gesture)
+        
+        if launchedOnce {
+            safetyLabel.text = "Authorize"
+            skipButton.isHidden = true
+        } else {
+            safetyLabel.text = "Set up your safety"
+            settings.set(true, forKey: "launchedOnce")
+        }
     }
+    
+    func authorized() {
+        performSegue(withIdentifier: "mainScreen", sender: self)
+    }
+    
     @IBAction func skipToMainTapped(_ sender: UIButton) {
         performSegue(withIdentifier: "mainScreen", sender: self)
     }
     
     @objc func safetyTapped(sender: UITapGestureRecognizer) {
-        performSegue(withIdentifier: "safetyScreen", sender: self)
+        if launchedOnce {
+            authorization.authorizationAttempt()
+        } else {
+            performSegue(withIdentifier: "safetyScreen", sender: self)
+        }
+        
     }
 }
