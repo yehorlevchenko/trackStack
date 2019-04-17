@@ -9,10 +9,9 @@
 import Foundation
 import Lottie
 
-class IntroVC: UIViewController, Storyboarded {
+class IntroVC: UIViewController {
     
     @IBOutlet weak var SafetyButton: UIView!
-    weak var coordinator: MainCoordinator?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,11 +41,10 @@ class IntroVC: UIViewController, Storyboarded {
         self.SafetyButton.addGestureRecognizer(gesture)
     }
     @IBAction func skipToMainTapped(_ sender: UIButton) {
-        coordinator?.proceedToMain()
+        performSegue(withIdentifier: "mainScreen", sender: self)
     }
     
     @objc func safetyTapped(sender: UITapGestureRecognizer) {
-//        performSegue(withIdentifier: "safetyScreen", sender: self)
-        coordinator?.proceedToSafety()
+        performSegue(withIdentifier: "safetyScreen", sender: self)
     }
 }
