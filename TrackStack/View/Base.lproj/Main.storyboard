@@ -183,16 +183,14 @@ It is recommended to use Touch ID to protect your data locally. Otherwise, your 
         <!--NavVC-->
         <scene sceneID="7cj-xp-CyG">
             <objects>
-                <navigationController navigationBarHidden="YES" toolbarHidden="NO" id="BLF-8J-r8i" customClass="NavVC" customModule="TrackStack" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController toolbarHidden="NO" id="BLF-8J-r8i" customClass="NavVC" customModule="TrackStack" customModuleProvider="target" sceneMemberID="viewController">
                     <nil key="simulatedTopBarMetrics"/>
                     <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <navigationBar key="navigationBar" opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="9x0-hx-wvp">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9x0-hx-wvp">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <textAttributes key="titleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         </textAttributes>
                         <textAttributes key="largeTitleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -215,18 +213,18 @@ It is recommended to use Touch ID to protect your data locally. Otherwise, your 
             <objects>
                 <viewController title="TrackStack" modalPresentationStyle="pageSheet" id="N8Z-0T-kiK" customClass="MainVC" customModule="TrackStack" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ixl-LR-2rd">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FyU-kD-VEo" userLabel="Background">
-                                <rect key="frame" x="0.0" y="44" width="414" height="200"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
                                 <color key="backgroundColor" red="0.35899999999999999" green="0.28160000000000002" blue="0.64000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="2fK-ue-x50"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yVh-qJ-jWX" userLabel="HUD">
-                                <rect key="frame" x="0.0" y="44" width="414" height="140"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="140"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="B9b-1j-7iC">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="140"/>
@@ -297,7 +295,7 @@ It is recommended to use Touch ID to protect your data locally. Otherwise, your 
                                 <viewLayoutGuide key="safeArea" id="Duy-wF-QlB"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="120" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3Ot-gd-Ab8">
-                                <rect key="frame" x="0.0" y="184" width="414" height="629"/>
+                                <rect key="frame" x="0.0" y="140" width="414" height="585"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -466,16 +464,25 @@ It is recommended to use Touch ID to protect your data locally. Otherwise, your 
                     </view>
                     <toolbarItems>
                         <barButtonItem systemItem="flexibleSpace" id="YWx-3m-tCY"/>
-                        <barButtonItem systemItem="add" id="3uo-Hm-5cl">
+                        <barButtonItem title="Add" style="plain" id="XHu-N1-6kk">
                             <color key="tintColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <action selector="createTransaction:" destination="N8Z-0T-kiK" id="cnf-lm-fzy"/>
+                                <action selector="createTransaction:" destination="N8Z-0T-kiK" id="p9C-m8-VWo"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem systemItem="flexibleSpace" id="pPN-Tt-dm5"/>
+                        <barButtonItem title="Settings" style="plain" id="lhR-SN-VRj">
+                            <color key="tintColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="settingsSegue:" destination="N8Z-0T-kiK" id="Hcn-Pi-ZJv"/>
+                                <segue destination="pq9-PB-VNb" kind="show" identifier="settingsScren" id="MaY-NN-JIq"/>
+                            </connections>
+                        </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="dke-6e-Y3M"/>
-                    <nil key="simulatedTopBarMetrics"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="dke-6e-Y3M">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="jQ1-HB-2lx"/>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
@@ -484,7 +491,7 @@ It is recommended to use Touch ID to protect your data locally. Otherwise, your 
                         <outlet property="HUDView" destination="yVh-qJ-jWX" id="tnl-kR-XrL"/>
                         <outlet property="LTCpriceLabel" destination="QKF-O8-Onb" id="l6m-hd-0fc"/>
                         <outlet property="TransactionTable" destination="3Ot-gd-Ab8" id="Yzx-9W-1KR"/>
-                        <segue destination="WDw-cs-DaL" kind="presentation" identifier="addTransaction" modalPresentationStyle="overCurrentContext" id="RbE-0V-yv1"/>
+                        <segue destination="WDw-cs-DaL" kind="presentation" identifier="addScreen" modalPresentationStyle="overCurrentContext" id="RbE-0V-yv1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gsn-rh-znm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -496,11 +503,11 @@ It is recommended to use Touch ID to protect your data locally. Otherwise, your 
             <objects>
                 <viewController storyboardIdentifier="AddTransactionViewController" autoresizesArchivedViewToFullSize="NO" title="Add new transaction" modalPresentationStyle="overCurrentContext" id="WDw-cs-DaL" customClass="AddTransactionViewController" customModule="TrackStack" sceneMemberID="viewController">
                     <view key="view" contentMode="bottom" id="g3N-vo-ExR">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mzW-EL-Z6W" userLabel="ModalView">
-                                <rect key="frame" x="0.0" y="364" width="375" height="410"/>
+                                <rect key="frame" x="0.0" y="452" width="375" height="410"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eV9-8q-w7s">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="4"/>
@@ -669,7 +676,7 @@ It is recommended to use Touch ID to protect your data locally. Otherwise, your 
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="87q-Mw-HEe" userLabel="Safe area"/>
                     </view>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="addTransactionButton" destination="5d8-Tn-N7y" id="MlH-Ox-DuZ"/>
@@ -680,7 +687,37 @@ It is recommended to use Touch ID to protect your data locally. Otherwise, your 
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NyL-gg-IfM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="419" y="166"/>
+            <point key="canvasLocation" x="548" y="-171"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="TJa-Cl-hFU">
+            <objects>
+                <tableViewController title="Settings" id="pq9-PB-VNb" customClass="SettingsVC" customModule="TrackStack" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="VFZ-FL-oa0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="oGq-sd-s4Y">
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oGq-sd-s4Y" id="dbL-J2-kST">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="pq9-PB-VNb" id="sud-xO-ssm"/>
+                            <outlet property="delegate" destination="pq9-PB-VNb" id="hGF-M2-65g"/>
+                        </connections>
+                    </tableView>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6sa-xZ-Udg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="548" y="538"/>
         </scene>
     </scenes>
     <resources>
@@ -1535,6 +1572,6 @@ AAAAAgEAAAAAAAAAbQAAAAAAAAAAAAAAAAAAxHs
         <image name="touch_glyph" width="270" height="270"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9ta-db-lea"/>
+        <segue reference="Kep-KY-0YV"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -61,7 +61,7 @@ class IntroVC: UIViewController, AuthLocked {
                 touchGlyph.isHidden = true
             }
         } else {
-            safetyLabel.text = "Set up your safety"
+            safetyLabel.text = "Secure your data"
             touchGlyph.isHidden = false
             settings.set(true, forKey: "launchedOnce")
         }

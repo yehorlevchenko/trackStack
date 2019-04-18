@@ -13,6 +13,7 @@
 		A504CEEA22667B2C00B6033D /* Transaction+CoreDataClass copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A504CEE822667B2C00B6033D /* Transaction+CoreDataClass copy.swift */; };
 		A504CEF722674C2A00B6033D /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A504CEF622674C2A00B6033D /* AddTransactionViewController.swift */; };
 		A504CEFA226766FA00B6033D /* Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = A504CEF9226766FA00B6033D /* Authorization.swift */; };
+		A504CF1C2268A04900B6033D /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A504CF1B2268A04900B6033D /* SettingsVC.swift */; };
 		A526ECD422529C58003FAF1B /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A526ECD322529C58003FAF1B /* MainVC.swift */; };
 		A52F11DD2242606900FF517D /* Refresher.xib in Resources */ = {isa = PBXBuildFile; fileRef = A52F11DC2242606900FF517D /* Refresher.xib */; };
 		A55627612200F45B008F9947 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55627602200F45B008F9947 /* AppDelegate.swift */; };
@@ -47,6 +48,7 @@
 		A504CEE822667B2C00B6033D /* Transaction+CoreDataClass copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Transaction+CoreDataClass copy.swift"; sourceTree = "<group>"; };
 		A504CEF622674C2A00B6033D /* AddTransactionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTransactionViewController.swift; sourceTree = "<group>"; };
 		A504CEF9226766FA00B6033D /* Authorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authorization.swift; sourceTree = "<group>"; };
+		A504CF1B2268A04900B6033D /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		A526ECD322529C58003FAF1B /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		A52F11DC2242606900FF517D /* Refresher.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Refresher.xib; sourceTree = "<group>"; };
 		A556275D2200F45B008F9947 /* TrackStack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrackStack.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -166,6 +168,7 @@
 				A5AFC11D225B6370000615C8 /* IntroVC.swift */,
 				A526ECD322529C58003FAF1B /* MainVC.swift */,
 				A5AFC123225BCA00000615C8 /* SafetyVC.swift */,
+				A504CF1B2268A04900B6033D /* SettingsVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A504CF1C2268A04900B6033D /* SettingsVC.swift in Sources */,
 				A504CED92263D8FF00B6033D /* MainGradient.swift in Sources */,
 				A58372BF221C38EA00E06B7C /* TrackStack.xcdatamodeld in Sources */,
 				A504CEEA22667B2C00B6033D /* Transaction+CoreDataClass copy.swift in Sources */,

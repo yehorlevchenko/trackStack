@@ -78,6 +78,10 @@ class MainVC: UIViewController, ContentShareable {
         loadTransactions()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = true
+    }
+    
     
     // MARK: Handling API data
     func receiveUpdate(data: [String:Double]) {
@@ -126,13 +130,18 @@ class MainVC: UIViewController, ContentShareable {
     
     // MARK: Segue handling
     @IBAction func createTransaction(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "addTransaction", sender: self)
+        performSegue(withIdentifier: "addScreen", sender: self)
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "addTransaction" {
+        if segue.identifier == "addScreen" {
             let destinationVC = segue.destination as! AddTransactionViewController
             destinationVC.delegate = self
         }
+    }
+    
+    @IBAction func settingsSegue(_ sender: Any) {
+        performSegue(withIdentifier: "settingsScreen", sender: self)
     }
     
     
