@@ -15,6 +15,7 @@ import SwipeCellKit
 
 protocol ContentShareable {
     func receiveUpdate(data: [String:Double])
+    func failedUpdate(reason: String)
 }
 
 public enum FiatCurrency: String {
@@ -56,9 +57,7 @@ class MainVC: UIViewController, ContentShareable {
         TransactionTable.dataSource = self
         apiWorker.delegate = self
         
-        print(settings.bool(forKey: "biometricLock"))
-        
-        let backgroundFrame: CGRect = CGRect(x: 0, y: 0, width: view.frame.width, height: (UIApplication.shared.statusBarFrame.height + HUDView.frame.height + TransactionTable.rowHeight / 2))
+        let backgroundFrame: CGRect = CGRect(x: 0, y: 0, width: view.frame.width, height: (UIApplication.shared.statusBarFrame.height + HUDView.frame.height + TransactionTable.rowHeight))
         let background = UIView(frame: backgroundFrame)
         background.backgroundColor = UIColor.flatPurpleColorDark()
         view.addSubview(background)
@@ -86,6 +85,12 @@ class MainVC: UIViewController, ContentShareable {
     // MARK: Handling API data
     func receiveUpdate(data: [String:Double]) {
         priceData = priceData.merging(data) { (_, new) in new }
+    }
+    
+    func failedUpdate(reason: String) {
+        let alertController = UIAlertController(title: "All radio is dead", message: reason, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        present(alertController, animated: true)
     }
     
     func processUpdate() {
@@ -211,20 +216,21 @@ extension MainVC: UITableViewDelegate, UITableViewDataSource, SwipeTableViewCell
         let cellSize = self.TransactionTable.rowHeight
         let buttonSize = cellSize / 4 * 2.5
         let marginSize = (cellSize - buttonSize) / 2
+        let startX: CGFloat = 5.0
         let initialScale: CGFloat = 0.8
         let threshold: CGFloat = 0.2
         let duration: TimeInterval = 0.3
         let button = context.button
         button.transform = .init(scaleX: 0.8, y: 0.8)
-        button.layer.frame = CGRect(x: 0, y: marginSize, width: buttonSize, height: buttonSize)
+        button.layer.frame = CGRect(x: startX, y: marginSize, width: buttonSize, height: buttonSize)
         button.layer.cornerRadius = 0.5 * button.bounds.size.width
         button.clipsToBounds = false
         button.backgroundColor = UIColor.flatRedColorDark()
-        
+
         if context.oldPercentVisible == 0 {
             context.button.transform = .init(scaleX: initialScale, y: initialScale)
         }
-        
+
         if context.oldPercentVisible < threshold && context.newPercentVisible >= threshold {
             UIView.animate(withDuration: duration) {
                 context.button.transform = .identity
@@ -241,7 +247,7 @@ extension MainVC: UITableViewDelegate, UITableViewDataSource, SwipeTableViewCell
         options.expansionStyle = .none
         options.transitionStyle = .drag
         options.buttonVerticalAlignment = .center
-        options.minimumButtonWidth = 80
+        options.minimumButtonWidth = 90
         return options
     }
     

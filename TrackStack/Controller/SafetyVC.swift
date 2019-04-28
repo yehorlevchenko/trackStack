@@ -21,7 +21,7 @@ class SafetyVC: UIViewController, AuthLocked {
 
     TrackStack has nothing to do with your currency itself and has no access to it.
 
-    TrackStack would not request, receive any external information, except actual prices on your request.
+    TrackStack would not request, receive any external information, except current prices on your request. The only source of data for this app is Bitcoinaverage.com.
 
     It is recommended to use Touch ID, Face ID to protect your data locally. Otherwise, your local data might be vulnerable.
     """
@@ -32,7 +32,7 @@ class SafetyVC: UIViewController, AuthLocked {
     }
     
     func authorized() {
-        settings.set(true, forKey: "biometricLock")
+        UserDefaultsManager.biometricLock = true
         performSegue(withIdentifier: "mainScreen", sender: self)
     }
     
@@ -41,7 +41,7 @@ class SafetyVC: UIViewController, AuthLocked {
     }
     
     @IBAction func skipTapped(_ sender: Any) {
-        settings.set(false, forKey: "biometricLock")
+        UserDefaultsManager.biometricLock = false
         performSegue(withIdentifier: "mainScreen", sender: self)
     }
 }

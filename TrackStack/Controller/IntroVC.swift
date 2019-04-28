@@ -15,17 +15,13 @@ class IntroVC: UIViewController, AuthLocked {
     @IBOutlet weak var safetyButton: UIView!
     @IBOutlet weak var touchGlyph: UIImageView!
     @IBOutlet weak var safetyLabel: UILabel!
-    let settings = UserDefaults.standard
+    
     let authorization = Authorization()
-    var launchedOnce: Bool = true
-    var biometricLock: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         authorization.delegate = self
-        launchedOnce = settings.bool(forKey: "launchedOnce")
-        biometricLock = settings.bool(forKey: "biometricLock")
         
         self.navigationController?.navigationBar.isHidden = true
         
@@ -51,9 +47,9 @@ class IntroVC: UIViewController, AuthLocked {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(self.safetyTapped))
         self.safetyButton.addGestureRecognizer(gesture)
         
-        if launchedOnce {
+        if UserDefaultsManager.launchedOnce {
             skipButton.isHidden = true
-            if biometricLock {
+            if UserDefaultsManager.biometricLock {
                 safetyLabel.text = "Authorize"
                 touchGlyph.isHidden = false
             } else {
@@ -63,7 +59,7 @@ class IntroVC: UIViewController, AuthLocked {
         } else {
             safetyLabel.text = "Secure your data"
             touchGlyph.isHidden = false
-            settings.set(true, forKey: "launchedOnce")
+            UserDefaultsManager.launchedOnce = true
         }
     }
     
@@ -76,8 +72,8 @@ class IntroVC: UIViewController, AuthLocked {
     }
     
     @objc func safetyTapped(sender: UITapGestureRecognizer) {
-        if launchedOnce {
-            if biometricLock {
+        if UserDefaultsManager.launchedOnce {
+            if UserDefaultsManager.biometricLock {
                 authorization.authorizationAttempt()
             } else {
                 performSegue(withIdentifier: "mainScreen", sender: self)

@@ -216,13 +216,6 @@ It is recommended to use Touch ID to protect your data locally. Otherwise, your 
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FyU-kD-VEo" userLabel="Background">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
-                                <color key="backgroundColor" red="0.35899999999999999" green="0.28160000000000002" blue="0.64000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="2fK-ue-x50"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yVh-qJ-jWX" userLabel="HUD">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="140"/>
                                 <subviews>
@@ -297,13 +290,12 @@ It is recommended to use Touch ID to protect your data locally. Otherwise, your 
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="120" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3Ot-gd-Ab8">
                                 <rect key="frame" x="0.0" y="140" width="414" height="585"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="40" reuseIdentifier="Cell" rowHeight="120" id="EhE-1R-Y4F" customClass="TransactionCell" customModule="TrackStack">
                                         <rect key="frame" x="0.0" y="28" width="414" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EhE-1R-Y4F" id="ulj-MA-otg">
+                                        <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EhE-1R-Y4F" id="ulj-MA-otg">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -454,10 +446,7 @@ It is recommended to use Touch ID to protect your data locally. Otherwise, your 
                             <constraint firstItem="yVh-qJ-jWX" firstAttribute="trailing" secondItem="5Cs-LW-VzX" secondAttribute="trailing" id="9Dn-3h-XsE"/>
                             <constraint firstItem="3Ot-gd-Ab8" firstAttribute="leading" secondItem="5Cs-LW-VzX" secondAttribute="leading" id="SqU-Za-sUX"/>
                             <constraint firstItem="yVh-qJ-jWX" firstAttribute="leading" secondItem="5Cs-LW-VzX" secondAttribute="leading" id="TQy-Cz-Cbe"/>
-                            <constraint firstItem="FyU-kD-VEo" firstAttribute="leading" secondItem="5Cs-LW-VzX" secondAttribute="leading" id="XQ1-B1-yxl"/>
                             <constraint firstItem="3Ot-gd-Ab8" firstAttribute="trailing" secondItem="5Cs-LW-VzX" secondAttribute="trailing" id="Xan-8g-acu"/>
-                            <constraint firstItem="FyU-kD-VEo" firstAttribute="top" secondItem="5Cs-LW-VzX" secondAttribute="top" id="dfq-He-ibw"/>
-                            <constraint firstItem="FyU-kD-VEo" firstAttribute="trailing" secondItem="5Cs-LW-VzX" secondAttribute="trailing" id="oDT-Vl-NJ2"/>
                             <constraint firstItem="3Ot-gd-Ab8" firstAttribute="top" secondItem="yVh-qJ-jWX" secondAttribute="bottom" id="tMv-DM-2C9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5Cs-LW-VzX"/>
@@ -693,20 +682,92 @@ It is recommended to use Touch ID to protect your data locally. Otherwise, your 
         <scene sceneID="TJa-Cl-hFU">
             <objects>
                 <tableViewController title="Settings" id="pq9-PB-VNb" customClass="SettingsVC" customModule="TrackStack" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="VFZ-FL-oa0">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="VFZ-FL-oa0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="oGq-sd-s4Y">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oGq-sd-s4Y" id="dbL-J2-kST">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
+                        <sections>
+                            <tableViewSection headerTitle="Safety settings:" id="Tk8-wJ-BHO">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="biometricCell" id="oGq-sd-s4Y">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oGq-sd-s4Y" id="dbL-J2-kST">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Use Biometrics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K7g-00-QkX">
+                                                    <rect key="frame" x="20" y="12" width="116" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="wpR-QU-8tA">
+                                                    <rect key="frame" x="345" y="6" width="51" height="32"/>
+                                                    <color key="onTintColor" red="0.35899999999999999" green="0.28160000000000002" blue="0.64000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <connections>
+                                                        <action selector="biometricLockChanged:" destination="pq9-PB-VNb" eventType="valueChanged" id="60u-vY-juX"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="wpR-QU-8tA" secondAttribute="trailing" constant="20" id="2Yy-c2-g0M"/>
+                                                <constraint firstItem="wpR-QU-8tA" firstAttribute="top" secondItem="dbL-J2-kST" secondAttribute="top" constant="6" id="Ela-4E-9nu"/>
+                                                <constraint firstAttribute="bottom" secondItem="wpR-QU-8tA" secondAttribute="bottom" constant="6" id="Xrn-w8-bG7"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Most important but not implemented" id="QAg-Um-DcW">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="darkModeCell" id="8Kd-4w-k8c">
+                                        <rect key="frame" x="0.0" y="100" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8Kd-4w-k8c" id="DX9-hO-LmF">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dark Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Phe-Sf-g44">
+                                                    <rect key="frame" x="20" y="12" width="84" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="emI-fu-Jmx">
+                                                    <rect key="frame" x="345" y="6" width="51" height="32"/>
+                                                    <color key="onTintColor" red="0.35899999999999999" green="0.28160000000000002" blue="0.64000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="emI-fu-Jmx" firstAttribute="top" secondItem="DX9-hO-LmF" secondAttribute="top" constant="6" id="GEZ-Ft-mct"/>
+                                                <constraint firstAttribute="bottom" secondItem="emI-fu-Jmx" secondAttribute="bottom" constant="6" id="tOt-fU-Zwz"/>
+                                                <constraint firstAttribute="trailing" secondItem="emI-fu-Jmx" secondAttribute="trailing" constant="20" id="wU9-E0-O3P"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="dataSourceCell" id="aEm-O7-RZY">
+                                        <rect key="frame" x="0.0" y="144" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aEm-O7-RZY" id="c7G-Pp-M6O">
+                                            <rect key="frame" x="0.0" y="0.0" width="376" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Data Source" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9CI-tV-wUO">
+                                                    <rect key="frame" x="20" y="12" width="95" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
                         <connections>
                             <outlet property="dataSource" destination="pq9-PB-VNb" id="sud-xO-ssm"/>
                             <outlet property="delegate" destination="pq9-PB-VNb" id="hGF-M2-65g"/>
@@ -714,6 +775,9 @@ It is recommended to use Touch ID to protect your data locally. Otherwise, your 
                     </tableView>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="biometricLockSwitch" destination="wpR-QU-8tA" id="Whp-Xq-fH9"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6sa-xZ-Udg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

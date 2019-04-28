@@ -19,6 +19,11 @@ class APIWorker {
     var rawData: JSON?
     var preparedData = [String:Double]()
     
+    private enum ErrorHandler: String {
+        case networkError = "Unable to reach out data source. Check your connection."
+        case responseError = "No response from data source. Try again later."
+    }
+    
     func checkConnection() -> Bool {
         return NetworkReachabilityManager()!.isReachable
     }
@@ -39,9 +44,11 @@ class APIWorker {
                     self.unpackData(rawData: data)
                 } catch {
                     print("/// Network error: \(error)")
+                    self.delegate?.failedUpdate(reason: ErrorHandler.networkError.rawValue)
                 }
             case .failure(let error):
-                print(error.response!)
+                print("/// No response: \(error)")
+                self.delegate?.failedUpdate(reason: ErrorHandler.responseError.rawValue)
             }
         }
     }
