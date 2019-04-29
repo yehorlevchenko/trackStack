@@ -9,7 +9,6 @@ target 'TrackStack' do
     pod 'SwiftyJSON'
     pod 'Alamofire'
     pod 'ChameleonFramework'
-    pod 'SwipeCellKit'
     pod 'lottie-ios'
     pod 'Moya', '~> 12.0'
 end

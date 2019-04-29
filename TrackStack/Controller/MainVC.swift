@@ -11,7 +11,6 @@ import UIKit
 import CoreData
 import Alamofire
 import SwiftyJSON
-import SwipeCellKit
 
 protocol ContentShareable {
     func receiveUpdate(data: [String:Double])
@@ -57,24 +56,21 @@ class MainVC: UIViewController, ContentShareable {
         TransactionTable.dataSource = self
         apiWorker.delegate = self
         
-        let backgroundFrame: CGRect = CGRect(x: 0, y: 0, width: view.frame.width, height: (UIApplication.shared.statusBarFrame.height + HUDView.frame.height + TransactionTable.rowHeight))
+        let backgroundFrame: CGRect = CGRect(x: 0, y: 0, width: view.frame.width, height: (UIApplication.shared.statusBarFrame.height + HUDView.frame.height + TransactionTable.rowHeight / 2))
         let background = UIView(frame: backgroundFrame)
         background.backgroundColor = UIColor.flatPurpleColorDark()
         view.addSubview(background)
         view.sendSubviewToBack(background)
         
-//        navigationController?.navigationBar.barTintColor = UIColor.flatPurpleColorDark()
-
-//        refresher.backgroundColor = UIColor.clear
-//        refresher.addTarget(Any?.self, action: #selector(MainVC.refreshData), for: UIControl.Event.valueChanged)
-//        loadRefresher()
-//        self.view.addSubview(refresher)
+        let refreshController = UIRefreshControl()
+        refreshController.tintColor = UIColor.white
+//        refreshController.attributedTitle = NSAttributedString(string: "Retrieving new prices")
+        refreshController.addTarget(self, action: #selector(startUpdate), for: .valueChanged)
+        TransactionTable.refreshControl = refreshController
         
-        if apiWorker.checkConnection() {
-            apiWorker.update(for: cryptoCurrencyList)
-        }
-        
+        startUpdate()
         loadTransactions()
+        updateHUD()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -83,14 +79,24 @@ class MainVC: UIViewController, ContentShareable {
     
     
     // MARK: Handling API data
+    @objc func startUpdate() {
+        if apiWorker.checkConnection() {
+            apiWorker.update(for: cryptoCurrencyList)
+        } else {
+            failedUpdate(reason: "Unable to reach out data source. Check your connection.")
+        }
+    }
+    
     func receiveUpdate(data: [String:Double]) {
         priceData = priceData.merging(data) { (_, new) in new }
+        TransactionTable.refreshControl?.endRefreshing()
     }
     
     func failedUpdate(reason: String) {
         let alertController = UIAlertController(title: "All radio is dead", message: reason, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         present(alertController, animated: true)
+        TransactionTable.refreshControl?.endRefreshing()
     }
     
     func processUpdate() {
@@ -156,16 +162,17 @@ class MainVC: UIViewController, ContentShareable {
         let ltcTicker: String = "LTC-\(pickedFiatCurrency.rawValue)"
         let fiatGlyph: String = pickedFiatGlyph.rawValue
         let balance: String = String(format: "\(fiatGlyph)%.2f", countBalance())
-        
         BalanceAmountLabel.text = balance
         
         if let BTCprice = priceData[btcTicker] {
-            BTCpriceLabel.text = "BTC: \(fiatGlyph)\(BTCprice)"
+            let formattedPrice = String(format: "%.2f", BTCprice)
+            BTCpriceLabel.text = String(format: "BTC: \(fiatGlyph)\(formattedPrice)")
         } else {
             BTCpriceLabel.text = "BTC: no data"
         }
         if let LTCprice = priceData[ltcTicker] {
-            LTCpriceLabel.text = "LTC: \(fiatGlyph)\(LTCprice)"
+            let formattedPrice = String(format: "%.2f", LTCprice)
+            LTCpriceLabel.text = String(format: "LTC: \(fiatGlyph)\(formattedPrice)")
         } else {
             LTCpriceLabel.text = "LTC: no data"
         }
@@ -181,7 +188,7 @@ class MainVC: UIViewController, ContentShareable {
     }
 }
 
-extension MainVC: UITableViewDelegate, UITableViewDataSource, SwipeTableViewCellDelegate, SwipeActionTransitioning {
+extension MainVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return transactionList.count // your number of cell here
@@ -191,64 +198,21 @@ extension MainVC: UITableViewDelegate, UITableViewDataSource, SwipeTableViewCell
         let transaction = transactionList[indexPath.row]
         let currency: String = "\(transaction.currency!)-\(pickedFiatCurrency.rawValue)"
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! TransactionCell
-        cell.delegate = self
         cell.tuneView()
         cell.setTransaction(transaction: transaction, currentPrice: priceData[currency] ?? 0, fiat: pickedFiatCurrency, glyph: pickedFiatGlyph)
         return cell
     }
     
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-        guard orientation == .right else { return nil }
-        
-        let deleteAction = SwipeAction(style: .default, title: "Delete") { action, indexPath in
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
             self.deleteTransaction(at: indexPath)
             self.TransactionTable.reloadData()
-            self.updateHUD()
-        }
-        deleteAction.transitionDelegate = self
-        deleteAction.image = UIImage(named: "delete_icon")
-
-        return [deleteAction]
-    }
-    
-    // Custom swipe action appearance
-    func didTransition(with context: SwipeActionTransitioningContext) {
-        let cellSize = self.TransactionTable.rowHeight
-        let buttonSize = cellSize / 4 * 2.5
-        let marginSize = (cellSize - buttonSize) / 2
-        let startX: CGFloat = 5.0
-        let initialScale: CGFloat = 0.8
-        let threshold: CGFloat = 0.2
-        let duration: TimeInterval = 0.3
-        let button = context.button
-        button.transform = .init(scaleX: 0.8, y: 0.8)
-        button.layer.frame = CGRect(x: startX, y: marginSize, width: buttonSize, height: buttonSize)
-        button.layer.cornerRadius = 0.5 * button.bounds.size.width
-        button.clipsToBounds = false
-        button.backgroundColor = UIColor.flatRedColorDark()
-
-        if context.oldPercentVisible == 0 {
-            context.button.transform = .init(scaleX: initialScale, y: initialScale)
-        }
-
-        if context.oldPercentVisible < threshold && context.newPercentVisible >= threshold {
-            UIView.animate(withDuration: duration) {
-                context.button.transform = .identity
-            }
-        } else if context.oldPercentVisible >= threshold && context.newPercentVisible < threshold {
-            UIView.animate(withDuration: duration) {
-                context.button.transform = .init(scaleX: initialScale, y: initialScale)
-            }
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
-        var options = SwipeOptions()
-        options.expansionStyle = .none
-        options.transitionStyle = .drag
-        options.buttonVerticalAlignment = .center
-        options.minimumButtonWidth = 90
-        return options
+        }))
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(actionSheet, animated: true)
+        
+        tableView.deselectRow(at: indexPath, animated: false)
     }
     
     func drawUpdate() {
@@ -258,4 +222,6 @@ extension MainVC: UITableViewDelegate, UITableViewDataSource, SwipeTableViewCell
             cell.updateData(index: index)
         }
     }
+    
+    
 }

@@ -7,14 +7,14 @@
 //
 
 import UIKit
-import SwipeCellKit
 import ChameleonFramework
 
-class TransactionCell: SwipeTableViewCell {
+class TransactionCell: UITableViewCell {
     
     var transaction: Transaction?
     let redColor = UIColor(hexString: "9F2121")
     let greenColor = UIColor(hexString: "219F4F")
+    let greyColor = UIColor.flatGray()
     let cornerRadius: CGFloat = 6
     
     @IBOutlet weak var transactionAmountLabel: UILabel!
@@ -41,9 +41,25 @@ class TransactionCell: SwipeTableViewCell {
         transactionCurrencyImage.image = UIImage(named: transaction.currency!)
         transactionPairLabel.text = "\(transaction.currency!)-\(fiat.rawValue)"
         transactionPriceCurrentLabel.text = priceLast
-        transactionPriceDiffLabel.text = transaction.priceOrigin > currentPrice ? "\(priceDiff)%" : "\(priceDiff)%"
-        transactionPriceDiffLabel.textColor = transaction.priceOrigin > currentPrice ? redColor : greenColor
-        transactionPriceDiff.image = transaction.priceOrigin > currentPrice ? UIImage(named: "priceDown") : UIImage(named: "priceUp")
+        
+        
+        if (transaction.priceOrigin - currentPrice) > 0.1 {
+            if transaction.priceOrigin > currentPrice {
+                transactionPriceDiffLabel.text = "\(priceDiff)%"
+                transactionPriceDiffLabel.textColor = redColor
+                transactionPriceDiff.isHidden = false
+                transactionPriceDiff.image = UIImage(named: "priceDown")
+            } else {
+                transactionPriceDiffLabel.text = "\(priceDiff)%"
+                transactionPriceDiffLabel.textColor = greenColor
+                transactionPriceDiff.isHidden = false
+                transactionPriceDiff.image = UIImage(named: "priceUp")
+            }
+        } else {
+            transactionPriceDiffLabel.text = "<0.1%"
+            transactionPriceDiffLabel.textColor = greyColor
+            transactionPriceDiff.isHidden = true
+        }
     }
     
     func updateData(index: Int) {
